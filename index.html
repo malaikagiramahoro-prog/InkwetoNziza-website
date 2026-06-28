@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkweto Nziza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* ─────────────────────────────
+           RESET & BASE
+        ───────────────────────────── */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFF8EE;
+            color: #2C1A09;
+            line-height: 1.6;
+        }
+        a { text-decoration: none; }
+        img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+        /* ─────────────────────────────
+           COLOUR VARIABLES
+        ───────────────────────────── */
+        :root {
+            --brown-dark:  #2C1A09;
+            --brown-mid:   #3B2412;
+            --brown-warm:  #6B4423;
+            --gold:        #C9A97A;
+            --cream-mid:   #F5ECD7;
+            --cream-deep:  #E8D4B4;
+            --border:      #D4B896;
+        }
+
+        /* ─────────────────────────────
+           LAYOUT
+        ───────────────────────────── */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ─────────────────────────────
+           NAVIGATION
+        ───────────────────────────── */
+        header {
+            background: var(--brown-mid);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            gap: 16px;
+        }
+        .nav-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--cream-mid);
+            white-space: nowrap;
+        }
+        .nav-logo span { color: var(--gold); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 14px;
+            color: var(--gold);
+        }
+        .nav-links a:hover { color: var(--cream-mid); }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--brown-mid) !important;
+            font-weight: 600;
+            padding: 9px 20px;
+            border-radius: 8px;
+        }
+        .nav-cta:hover { background: var(--cream-mid) !important; }
+
+        /* Language switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+        .lang-btn:hover  { background: var(--gold); color: var(--brown-mid); }
+        .lang-btn.active { background: var(--gold); color: var(--brown-mid); }
+
+        /* Mobile hamburger */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+            flex-shrink: 0;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        /* ─────────────────────────────
+           HERO
+        ───────────────────────────── */
+        .hero {
+            background: var(--cream-mid);
+            padding: 80px 0 64px;
+        }
+        .hero-inner {
+            display: flex;
+            align-items: center;
+            gap: 56px;
+        }
+        .hero-text { flex: 1; }
+
+        .hero-h1 {
+            font-size: 42px;
+            font-weight: 600;
+            color: var(--brown-dark);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .hero-h1 em {
+            font-style: normal;
+            color: var(--brown-warm);
+        }
+        .hero-sub {
+            font-size: 16px;
+            color: var(--brown-warm);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 460px;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* Buttons */
+        .btn-dark {
+            display: inline-block;
+            background: var(--brown-mid);
+            color: var(--cream-mid);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 13px 28px;
+            border-radius: 8px;
+        }
+        .btn-dark:hover { background: var(--brown-dark); }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1.5px solid var(--brown-warm);
+            color: var(--brown-warm);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 13px 28px;
+            border-radius: 8px;
+        }
+        .btn-outline:hover { background: var(--brown-warm); color: var(--cream-mid); }
+
+        /* Hero photo */
+        .hero-img-wrap {
+            flex-shrink: 0;
+            width: 420px;
+            height: 300px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--cream-deep);
+            border: 2px solid var(--cream-deep);
+        }
+        .img-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--brown-warm);
+            font-size: 13px;
+            gap: 8px;
+            opacity: 0.45;
+        }
+        .img-placeholder svg {
+            width: 44px;
+            height: 44px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ─────────────────────────────
+           HOW IT WORKS
+        ───────────────────────────── */
+        .how {
+            padding: 80px 0;
+        }
+        .section-eyebrow {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--brown-warm);
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-size: 30px;
+            font-weight: 600;
+            color: var(--brown-dark);
+            margin-bottom: 40px;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+        }
+        .step {
+            background: var(--cream-mid);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px 24px;
+        }
+        .step-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--brown-mid);
+            color: var(--gold);
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .step h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--brown-dark);
+            margin-bottom: 8px;
+        }
+        .step p {
+            font-size: 14px;
+            color: var(--brown-warm);
+            line-height: 1.6;
+        }
+
+        /* ─────────────────────────────
+           FOOTER
+        ───────────────────────────── */
+        footer {
+            background: var(--brown-dark);
+            padding: 28px 0;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .footer-logo {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--cream-mid);
+        }
+        .footer-logo span { color: var(--gold); }
+        .footer-links { display: flex; gap: 24px; list-style: none; }
+        .footer-links a { font-size: 13px; color: var(--gold); }
+        .footer-links a:hover { color: var(--cream-mid); }
+        .footer-copy { font-size: 12px; color: var(--brown-warm); }
+
+        /* ─────────────────────────────
+           MOBILE
+        ───────────────────────────── */
+        @media (max-width: 768px) {
+            .hero-inner { flex-direction: column; gap: 32px; }
+            .hero-img-wrap { width: 100%; height: 240px; }
+            .hero-h1 { font-size: 30px; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 58px; left: 0; right: 0;
+                background: var(--brown-mid);
+                padding: 20px 24px;
+                gap: 16px;
+                z-index: 99;
+            }
+            .nav-toggle { display: flex; }
+            header { position: relative; }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+<header>
+    <div class="container">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">Inkweto<span> Nziza</span></a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="products.html"     data-i18n="nav_products">Products</a></li>
+                <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">Contact Us</a></li>
+            </ul>
+
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en', this)">EN</button>
+                <button class="lang-btn"        onclick="setLang('rw', this)">RW</button>
+                <button class="lang-btn"        onclick="setLang('fr', this)">FR</button>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+
+        </nav>
+    </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════ -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+
+            <!-- Left: headline and buttons -->
+            <div class="hero-text">
+                <h1 class="hero-h1" data-i18n="hero_h1">
+                    Everything you need to make <em>great shoes</em>
+                </h1>
+                <p class="hero-sub" data-i18n="hero_sub">
+                    Rubber soles, adhesive glues, and microfiber fabric — supplied to shoe-making schools, craftsmen, and wholesalers.
+                </p>
+                <div class="hero-btns">
+                    <!-- This button opens the products page -->
+                    <a href="products.html" class="btn-dark" data-i18n="hero_btn1">
+                        See Our Products
+                    </a>
+                    <a href="contact.html" class="btn-outline" data-i18n="hero_btn2">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+           <div class="hero-img-wrap">
+    <img src="image.jpg.png" alt="Inkweto Nziza shoe materials">
+</div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════ -->
+<section class="how">
+    <div class="container">
+
+        <p class="section-eyebrow" data-i18n="how_eyebrow">How it works</p>
+        <h2 class="section-title"  data-i18n="how_title">Ordering is simple</h2>
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3 data-i18n="step1_title">Browse our products</h3>
+                <p  data-i18n="step1_desc">Go to our products page and explore the soles, glues, and caouch fabric we have available.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3 data-i18n="step2_title">Choose and select quantity</h3>
+                <p  data-i18n="step2_desc">Pick the product you need, choose how many you want, then click the order button.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3 data-i18n="step3_title">We confirm your order</h3>
+                <p  data-i18n="step3_desc">We receive your WhatsApp message, confirm the order, and arrange payment with you.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-num">4</div>
+                <h3 data-i18n="step4_title">Delivered to you</h3>
+                <p  data-i18n="step4_desc">Your materials are packed and delivered to your location.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-logo">Inkweto<span> Nziza</span></div>
+            <ul class="footer-links">
+                <li><a href="products.html"     data-i18n="nav_products">Products</a></li>
+                <li><a href="contact.html"      data-i18n="nav_contact">Contact Us</a></li>
+            </ul>
+            <p class="footer-copy">© 2026 Inkweto Nziza</p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════ -->
+<script>
+
+    /* ── Mobile nav ── */
+    document.getElementById('navToggle').addEventListener('click', function () {
+        document.getElementById('navLinks').classList.toggle('open');
+    });
+
+
+    /* ── Translations ── */
+    const translations = {
+
+        en: {
+            nav_products:  "Products",
+            nav_how:       "How it works",
+            nav_contact:   "Contact Us",
+
+            hero_h1:       "Everything you need to make <em>great shoes</em>",
+            hero_sub:      "Rubber soles, super glues, and caouch fabric — supplied to shoe-making schools, craftsmen, and wholesalers.",
+            hero_btn1:     "See Our Products",
+            hero_btn2:     "Contact Us",
+
+            how_eyebrow:   "How it works",
+            how_title:     "Ordering is simple",
+            step1_title:   "Browse our products",
+            step1_desc:    "Go to our products page and explore the soles, glues, and fabric we have available.",
+            step2_title:   "Choose and select quantity",
+            step2_desc:    "Pick the product you need, choose how many you want, then click the order button.",
+            step3_title:   "We confirm your order",
+            step3_desc:    "We receive your WhatsApp message, confirm the order, and arrange payment with you.",
+            step4_title:   "Delivered to you",
+            step4_desc:    "Your materials are packed and delivered to your location.",
+        },
+
+        rw: {
+            nav_products:  "Ibicuruzwa",
+            nav_how:       "Uburyo bikora",
+            nav_contact:   "Twandikire",
+
+            hero_h1:       "Ibyo ukeneye byose mu gukora <em>inkweto nziza</em>",
+            hero_sub:      "Imipira y'inkweto y'ubwoko butandukanye, talons z'ubwoko butandukanye, tapis, na supaguru z'inketo — bikoreshwa n'ibigo byigisha gukora inkweto, inzobere, n'abacuruzi.",
+            hero_btn1:     "Reba Ibicuruzwa",
+            hero_btn2:     "Twandikire",
+
+            how_eyebrow:   "Uburyo bikora",
+            how_title:     "Gutumiza byoroheje",
+            step1_title:   "Reba ibicuruzwa byacu",
+            step1_desc:    "Jya ku rupapuro rw'ibicuruzwa urebe ibikoresho dufite.",
+            step2_title:   "Hitamo ingano",
+            step2_desc:    "Hitamo igicuruzwa ukeneye, ugena ingano ushaka, hanyuma ukande akadirishya ko gusaba.",
+            step3_title:   "Twemereza itumiza ryawe",
+            step3_desc:    "Duhabwa ubutumwa bwawe kuri WhatsApp, twemereze itumiza, tuganire ku kwishyura.",
+            step4_title:   "Bikakugezwaho",
+            step4_desc:    "Ibikoresho byawe bipakiwe bikakugezwaho aho uri.",
+        },
+
+        fr: {
+            nav_products:  "Produits",
+            nav_how:       "Comment ça marche",
+            nav_contact:   "Nous contacter",
+
+            hero_h1:       "Tout ce qu'il faut pour faire de <em>belles chaussures</em>",
+            hero_sub:      "Semelles en caoutchouc, colles adhésives et tissu/Tapis microfibre — fournis aux écoles de cordonnerie, artisans et grossistes.",
+            hero_btn1:     "Voir nos produits",
+            hero_btn2:     "Nous contacter",
+
+            how_eyebrow:   "Comment ça marche",
+            how_title:     "Commander est simple",
+            step1_title:   "Parcourez nos produits",
+            step1_desc:    "Allez sur notre page produits et explorez les semelles, colles et tissus disponibles.",
+            step2_title:   "Choisissez et sélectionnez la quantité",
+            step2_desc:    "Choisissez le produit souhaité, indiquez la quantité, puis cliquez sur le bouton de commande.",
+            step3_title:   "Nous confirmons votre commande",
+            step3_desc:    "Nous recevons votre message WhatsApp, confirmons la commande et organisons le paiement.",
+            step4_title:   "Livré chez vous",
+            step4_desc:    "Vos matériaux sont emballés et livrés à votre adresse.",
+        }
+
+    };
+
+
+    /* ── Language switcher ── */
+    function setLang(lang, clickedBtn) {
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+        clickedBtn.classList.add('active');
+
+        const t = translations[lang];
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            const key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) {
+                el.innerHTML = t[key];
+            }
+        });
+
+        document.documentElement.setAttribute('lang', lang);
+    }
+
+</script>
+
+
+</body>
+</html>

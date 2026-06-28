@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products — Inkweto Nziza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFF8EE;
+            color: #2C1A09;
+            line-height: 1.6;
+        }
+        a { text-decoration: none; }
+        img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+        :root {
+            --brown-dark:  #2C1A09;
+            --brown-mid:   #3B2412;
+            --brown-warm:  #6B4423;
+            --gold:        #C9A97A;
+            --cream-mid:   #F5ECD7;
+            --cream-deep:  #E8D4B4;
+            --border:      #D4B896;
+            --whatsapp:    #25D366;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── NAVIGATION ── */
+        header {
+            background: var(--brown-mid);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            gap: 16px;
+        }
+        .nav-logo { font-size: 18px; font-weight: 600; color: var(--cream-mid); white-space: nowrap; }
+        .nav-logo span { color: var(--gold); }
+        .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+        .nav-links a { font-size: 14px; color: var(--gold); }
+        .nav-links a:hover { color: var(--cream-mid); }
+        .nav-cta { background: var(--gold); color: var(--brown-mid) !important; font-weight: 600; padding: 9px 20px; border-radius: 8px; }
+        .nav-cta:hover { background: var(--cream-mid) !important; }
+        .lang-switcher { display: flex; gap: 6px; flex-shrink: 0; }
+        .lang-btn {
+            background: none; border: 1px solid var(--gold); color: var(--gold);
+            font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 6px;
+            cursor: pointer; font-family: 'Inter', sans-serif;
+        }
+        .lang-btn:hover  { background: var(--gold); color: var(--brown-mid); }
+        .lang-btn.active { background: var(--gold); color: var(--brown-mid); }
+        .nav-toggle {
+            display: none; background: none; border: none; cursor: pointer;
+            flex-direction: column; gap: 5px; padding: 4px; flex-shrink: 0;
+        }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; }
+
+        /* ── PAGE HERO ── */
+        .page-hero { background: var(--cream-mid); padding: 52px 0 44px; text-align: center; }
+        .page-hero h1 { font-size: 36px; font-weight: 600; color: var(--brown-dark); margin-bottom: 10px; }
+        .page-hero p  { font-size: 15px; color: var(--brown-warm); max-width: 520px; margin: 0 auto; }
+
+        /* ── CATEGORY TABS ── */
+        .category-tabs {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 58px;
+            z-index: 90;
+        }
+        .tabs-inner {
+            display: flex; gap: 4px; padding: 0 24px;
+            max-width: 1100px; margin: 0 auto; overflow-x: auto;
+        }
+        .tab-link {
+            display: inline-block; font-size: 14px; font-weight: 500;
+            color: var(--brown-warm); padding: 14px 20px;
+            border-bottom: 2.5px solid transparent; white-space: nowrap; transition: all 0.2s;
+        }
+        .tab-link:hover { color: var(--brown-mid); }
+        .tab-link.active { color: var(--brown-mid); border-bottom-color: var(--brown-mid); }
+
+        /* ── PRODUCTS BODY ── */
+        .products-page { padding: 56px 0 80px; }
+        .product-section { margin-bottom: 72px; }
+        .product-section:last-child { margin-bottom: 0; }
+
+        .section-heading { margin-bottom: 28px; padding-bottom: 14px; border-bottom: 1.5px solid var(--border); }
+        .section-heading h2 { font-size: 22px; font-weight: 600; color: var(--brown-dark); margin-bottom: 4px; }
+        .section-heading p  { font-size: 13px; color: var(--brown-warm); }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* ── PRODUCT CARD ── */
+        .product-card {
+            background: #fff; border: 1px solid var(--border); border-radius: 14px;
+            overflow: hidden; display: flex; flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(59,36,18,0.12); }
+
+        .product-img { height: 190px; background: var(--cream-deep); overflow: hidden; flex-shrink: 0; }
+        .img-placeholder {
+            width: 100%; height: 100%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            color: var(--brown-warm); font-size: 12px; gap: 6px; opacity: 0.45;
+        }
+        .img-placeholder svg {
+            width: 36px; height: 36px; fill: none; stroke: currentColor;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        .product-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+        .product-tag {
+            display: inline-block; background: var(--cream-mid); color: var(--brown-warm);
+            font-size: 10px; font-weight: 500; padding: 2px 9px; border-radius: 20px;
+            margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .product-name { font-size: 16px; font-weight: 600; color: var(--brown-dark); margin-bottom: 6px; }
+        .product-desc { font-size: 13px; color: var(--brown-warm); line-height: 1.6; margin-bottom: 16px; flex: 1; }
+
+        .product-price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; }
+        .product-price { font-size: 22px; font-weight: 600; color: var(--brown-dark); }
+        .product-unit  { font-size: 13px; color: var(--brown-warm); }
+
+        /* ── QUANTITY PICKER ── */
+        .qty-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+        .qty-label { font-size: 13px; color: var(--brown-warm); font-weight: 500; }
+        .qty-controls { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+        .qty-btn {
+            background: var(--cream-mid); border: none; width: 34px; height: 34px;
+            font-size: 18px; color: var(--brown-mid); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .qty-btn:hover { background: var(--cream-deep); }
+        .qty-input {
+            width: 46px; height: 34px; border: none;
+            border-left: 1px solid var(--border); border-right: 1px solid var(--border);
+            text-align: center; font-size: 14px; font-weight: 500;
+            color: var(--brown-dark); font-family: 'Inter', sans-serif; background: #fff;
+        }
+        .qty-input:focus { outline: none; }
+
+        /* ── ORDER BUTTON ── */
+        .order-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: var(--whatsapp); color: #fff; font-size: 14px; font-weight: 600;
+            padding: 12px 16px; border-radius: 8px; border: none; cursor: pointer;
+            width: 100%; font-family: 'Inter', sans-serif; transition: opacity 0.2s;
+        }
+        .order-btn:hover { opacity: 0.88; }
+        .order-btn svg {
+            width: 18px; height: 18px; fill: none; stroke: #fff;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
+        }
+
+        /* ── FOOTER ── */
+        footer { background: var(--brown-dark); padding: 28px 0; }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .footer-logo { font-size: 15px; font-weight: 600; color: var(--cream-mid); }
+        .footer-logo span { color: var(--gold); }
+        .footer-links { display: flex; gap: 22px; list-style: none; }
+        .footer-links a { font-size: 13px; color: var(--gold); }
+        .footer-links a:hover { color: var(--cream-mid); }
+        .footer-copy { font-size: 12px; color: var(--brown-warm); }
+
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column; position: absolute;
+                top: 58px; left: 0; right: 0; background: var(--brown-mid);
+                padding: 20px 24px; gap: 16px; z-index: 99;
+            }
+            .nav-toggle { display: flex; }
+            header { position: relative; }
+            .page-hero h1 { font-size: 26px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+        }
+
+    </style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════ -->
+<header>
+    <div class="container">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">Inkweto<span> Nziza</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="products.html"     data-i18n="nav_products">Products</a></li>
+                <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">Contact Us</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en', this)">EN</button>
+                <button class="lang-btn"        onclick="setLang('rw', this)">RW</button>
+                <button class="lang-btn"        onclick="setLang('fr', this)">FR</button>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════ -->
+<section class="page-hero">
+    <div class="container">
+        <h1 data-i18n="page_title">Our Products</h1>
+        <p  data-i18n="page_sub">Choose a product, select your quantity, and place your order directly on WhatsApp.</p>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CATEGORY TABS
+═══════════════════════════════════════ -->
+<nav class="category-tabs">
+    <div class="tabs-inner">
+        <a href="#soles"  class="tab-link active" data-i18n="tab_soles">Rubber Soles</a>
+        <a href="#talons" class="tab-link"        data-i18n="tab_talons">Talons</a>
+        <a href="#fabric" class="tab-link"        data-i18n="tab_fabric">Fabric</a>
+        <a href="#glues"  class="tab-link"        data-i18n="tab_glues">Glues</a>
+    </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════
+     PRODUCTS
+═══════════════════════════════════════ -->
+<section class="products-page">
+    <div class="container">
+
+
+        <!-- ════════════════════════
+             SECTION 1: RUBBER SOLES
+             5 types
+        ════════════════════════ -->
+        <div class="product-section" id="soles">
+            <div class="section-heading">
+                <h2 data-i18n="soles_title">Rubber Soles</h2>
+                <p  data-i18n="soles_sub">5 types available — sold per pair</p>
+            </div>
+            <div class="products-grid">
+
+                <!-- 1. Godasi (Volte na Rovas) -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/sole-godasi.jpg" alt="Godasi Sole"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>sole-godasi.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_soles">Soles</span>
+                        <div class="product-name" data-i18n="sole1_name">Godasi (Volte na Rovas)</div>
+                        <div class="product-desc" data-i18n="sole1_desc">Durable rubber sole, Volte and Rovas quality. Strong grip for everyday and formal footwear.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">2,500</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_pair">pair</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Godasi (Volte na Rovas)', 2500, 'pair')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Congo za Wearable -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/sole-congo-wearable.jpg" alt="Congo Wearable Sole"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>sole-congo-wearable.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_soles">Soles</span>
+                        <div class="product-name" data-i18n="sole2_name">Congo za Wearable</div>
+                        <div class="product-desc" data-i18n="sole2_desc">Flexible and lightweight Congo sole. Comfortable for everyday casual footwear.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">2,000</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_pair">pair</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Congo za Wearable', 2000, 'pair')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Congo za Original -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/sole-congo-original.jpg" alt="Congo Original Sole"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>sole-congo-original.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_soles">Soles</span>
+                        <div class="product-name" data-i18n="sole3_name">Congo za Original</div>
+                        <div class="product-desc" data-i18n="sole3_desc">Original Congo rubber sole. Reliable quality for professional shoe construction.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">2,500</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_pair">pair</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Congo za Original', 2500, 'pair')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. Umupira wa Safesole -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/sole-safesole.jpg" alt="Safesole"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>sole-safesole.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_soles">Soles</span>
+                        <div class="product-name" data-i18n="sole4_name">Umupira wa Safesole</div>
+                        <div class="product-desc" data-i18n="sole4_desc">Safesole rubber sole. Designed for safety and grip, suitable for work and outdoor shoes.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">2,500</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_pair">pair</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Umupira wa Safesole', 2500, 'pair')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 5. Umupira wa Cyuma mbere -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/sole-cyuma.jpg" alt="Cyuma mbere Sole"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>sole-cyuma.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_soles">Soles</span>
+                        <div class="product-name" data-i18n="sole5_name">Umupira wa Cyuma mbere</div>
+                        <div class="product-desc" data-i18n="sole5_desc">Premium Cyuma mbere rubber sole. Top-of-the-range quality for high-end shoe construction.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">10,000</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_pair">pair</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Umupira wa Cyuma mbere', 10000, 'pair')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ════════════════════════
+             SECTION 2: TALONS
+             3 types
+        ════════════════════════ -->
+        <div class="product-section" id="talons">
+            <div class="section-heading">
+                <h2 data-i18n="talons_title">Talons</h2>
+                <p  data-i18n="talons_sub">3 types available — sold per pair</p>
+            </div>
+            <div class="products-grid">
+
+                <!-- 1. Talon Original (China) -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/talon-original.jpg" alt="Talon Original"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>talon-original.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_talons">Talons</span>
+                        <div class="product-name" data-i18n="talon1_name">Talon Original (China)</div>
+                        <div class="product-desc" data-i18n="talon1_desc">Original talon imported from China. Firm and durable, ideal for formal and dress shoes.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">3,500</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_pair">pair</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Talon Original (China)', 3500, 'pair')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Talon Pilate (Kenya) -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/talon-pilate.jpg" alt="Talon Pilate"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>talon-pilate.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_talons">Talons</span>
+                        <div class="product-name" data-i18n="talon2_name">Talon Pilate (Kenya)</div>
+                        <div class="product-desc" data-i18n="talon2_desc">Flat talon imported from Kenya. Lightweight and flexible, suitable for casual and flat shoes.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">1,000</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_pair">pair</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Talon Pilate (Kenya)', 1000, 'pair')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Cedari Original -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/talon-cedari.jpg" alt="Cedari Original"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>talon-cedari.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_talons">Talons</span>
+                        <div class="product-name" data-i18n="talon3_name">Cedari Original</div>
+                        <div class="product-desc" data-i18n="talon3_desc">Original Cedari talon. Strong and long-lasting, trusted by professional shoemakers.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">3,000</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_pair">pair</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Cedari Original', 3000, 'pair')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ════════════════════════
+             SECTION 3: FABRIC
+             4 types
+        ════════════════════════ -->
+        <div class="product-section" id="fabric">
+            <div class="section-heading">
+                <h2 data-i18n="fabric_title">Caoutchouc Fabric</h2>
+                <p  data-i18n="fabric_sub">4 types available — sold per metre</p>
+            </div>
+            <div class="products-grid">
+
+                <!-- 1. Tapis Caouch -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/fabric-tapis.jpg" alt="Tapis Caouch"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>fabric-tapis.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_fabric">Fabric</span>
+                        <div class="product-name" data-i18n="fabric1_name">Tapis Caouch</div>
+                        <div class="product-desc" data-i18n="fabric1_desc">Rubber-based fabric used for shoe linings and inner panels. Durable and easy to work with.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">5,500</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_metre">metre</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Tapis Caouch', 5500, 'metre')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Texoni -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/fabric-texoni.jpg" alt="Texoni"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>fabric-texoni.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_fabric">Fabric</span>
+                        <div class="product-name" data-i18n="fabric2_name">Texoni</div>
+                        <div class="product-desc" data-i18n="fabric2_desc">Texoni fabric for shoe construction. Soft texture, commonly used for upper panels and linings.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">5,000</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_metre">metre</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Texoni', 5000, 'metre')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Lexine -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/fabric-lexine.jpg" alt="Lexine"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>fabric-lexine.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_fabric">Fabric</span>
+                        <div class="product-name" data-i18n="fabric3_name">Lexine</div>
+                        <div class="product-desc" data-i18n="fabric3_desc">Premium Lexine fabric. High-quality material used for the outer upper of formal and elegant shoes.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">10,000</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_metre">metre</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Lexine', 10000, 'metre')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. Contrefort -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/fabric-contrefort.jpg" alt="Contrefort"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>fabric-contrefort.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_fabric">Fabric</span>
+                        <div class="product-name" data-i18n="fabric4_name">Contrefort</div>
+                        <div class="product-desc" data-i18n="fabric4_desc">Contrefort stiffener material used to reinforce the heel area of shoes. Keeps the shoe shape firm.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">5,000</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_metre">metre</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Contrefort', 5000, 'metre')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ════════════════════════
+             SECTION 4: GLUES
+             2 types
+        ════════════════════════ -->
+        <div class="product-section" id="glues">
+            <div class="section-heading">
+                <h2 data-i18n="glues_title">Glues</h2>
+                <p  data-i18n="glues_sub">2 types available</p>
+            </div>
+            <div class="products-grid">
+
+                <!-- 1. Colle Quick Stick -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/glue-quickstick.jpg" alt="Quick Stick Contact Adhesive"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>glue-quickstick.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_glues">Glues</span>
+                        <div class="product-name" data-i18n="glue1_name">Colle — Quick Stick Contact Adhesive</div>
+                        <div class="product-desc" data-i18n="glue1_desc">Professional contact adhesive for full shoe construction. Strong, flexible bond on rubber, leather, and fabric.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">6,000</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_litre">litre</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Colle Quick Stick Contact Adhesive', 6000, 'litre')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Super Glue -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <!-- <img src="images/glue-super.jpg" alt="Super Glue"> -->
+                        <div class="img-placeholder">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            <small>glue-super.jpg</small>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <span class="product-tag" data-i18n="tag_glues">Glues</span>
+                        <div class="product-name" data-i18n="glue2_name">Super Glue</div>
+                        <div class="product-desc" data-i18n="glue2_desc">Fast-bonding super glue for quick repairs. Strong hold on rubber, leather, and fabric surfaces.</div>
+                        <div class="product-price-row">
+                            <span class="product-price">500</span>
+                            <span class="product-unit">RWF / <span data-i18n="per_piece">piece</span></span>
+                        </div>
+                        <div class="qty-row">
+                            <span class="qty-label" data-i18n="qty_label">Qty:</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                                <input  class="qty-input" type="number" value="1" min="1">
+                                <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="order-btn" onclick="orderOnWhatsApp(this, 'Super Glue', 500, 'piece')">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                            <span data-i18n="order_btn">Place Order on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-logo">Inkweto<span> Nziza</span></div>
+            <ul class="footer-links">
+                <li><a href="products.html"     data-i18n="nav_products">Products</a></li>
+                <li><a href="contact.html"      data-i18n="nav_contact">Contact Us</a></li>
+            </ul>
+            <p class="footer-copy">© 2025 Inkweto Nziza</p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════ -->
+<script>
+
+    /* ── Mobile nav ── */
+    document.getElementById('navToggle').addEventListener('click', function () {
+        document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    /* ── Tab highlight on scroll ── */
+    window.addEventListener('scroll', function () {
+        const sections = ['soles', 'talons', 'fabric', 'glues'];
+        const tabs = document.querySelectorAll('.tab-link');
+        let current = '';
+        sections.forEach(function (id) {
+            const el = document.getElementById(id);
+            if (el && window.scrollY >= el.offsetTop - 120) {
+                current = id;
+            }
+        });
+        tabs.forEach(function (tab) {
+            tab.classList.remove('active');
+            if (tab.getAttribute('href') === '#' + current) {
+                tab.classList.add('active');
+            }
+        });
+    });
+
+    /* ── Quantity buttons ── */
+    function changeQty(btn, delta) {
+        const input = btn.parentElement.querySelector('.qty-input');
+        let val = parseInt(input.value) || 1;
+        val = Math.max(1, val + delta);
+        input.value = val;
+    }
+
+    /* ── WhatsApp order ──
+       TO SWITCH TO MOM'S NUMBER:
+       Change 250784626577  →  250788431726
+    */
+    function orderOnWhatsApp(btn, productName, pricePerUnit, unit) {
+        const card  = btn.closest('.product-card');
+        const input = card.querySelector('.qty-input');
+        const qty   = parseInt(input.value) || 1;
+        const total = (qty * pricePerUnit).toLocaleString();
+
+        const message =
+            'Hello Inkweto Nziza! I would like to place an order:%0A%0A' +
+            'Product: ' + productName + '%0A' +
+            'Quantity: ' + qty + ' ' + unit + (qty > 1 ? 's' : '') + '%0A' +
+            'Total: ' + total + ' RWF%0A%0A' +
+            'Please confirm availability. Thank you!';
+
+        /* TEST NUMBER — swap to 250788431726 when ready for mom */
+        window.open('https://wa.me/250784626577?text=' + message, '_blank');
+    }
+
+
+    /* ── Translations ── */
+    const translations = {
+
+        en: {
+            nav_products:  "Products",
+            nav_how:       "How it works",
+            nav_contact:   "Contact Us",
+            page_title:    "Our Products",
+            page_sub:      "Choose a product, select your quantity, and place your order directly on WhatsApp.",
+            tab_soles:     "Rubber Soles",
+            tab_talons:    "Talons",
+            tab_fabric:    "Fabric",
+            tab_glues:     "Glues",
+            soles_title:   "Rubber Soles",
+            soles_sub:     "5 types available — sold per pair",
+            talons_title:  "Talons",
+            talons_sub:    "3 types available — sold per pair",
+            fabric_title:  "Caoutchouc Fabric",
+            fabric_sub:    "4 types available — sold per metre",
+            glues_title:   "Glues",
+            glues_sub:     "2 types available",
+            tag_soles:     "Soles",
+            tag_talons:    "Talons",
+            tag_fabric:    "Fabric",
+            tag_glues:     "Glues",
+            sole1_name:    "Godasi (Volte na Rovas)",
+            sole1_desc:    "Durable rubber sole, Volte and Rovas quality. Strong grip for everyday and formal footwear.",
+            sole2_name:    "Congo za Wearable",
+            sole2_desc:    "Flexible and lightweight Congo sole. Comfortable for everyday casual footwear.",
+            sole3_name:    "Congo za Original",
+            sole3_desc:    "Original Congo rubber sole. Reliable quality for professional shoe construction.",
+            sole4_name:    "Umupira wa Safesole",
+            sole4_desc:    "Safesole rubber sole. Designed for safety and grip, suitable for work and outdoor shoes.",
+            sole5_name:    "Umupira wa Cyuma mbere",
+            sole5_desc:    "Premium Cyuma mbere rubber sole. Top-of-the-range quality for high-end shoe construction.",
+            talon1_name:   "Talon Original (China)",
+            talon1_desc:   "Original talon imported from China. Firm and durable, ideal for formal and dress shoes.",
+            talon2_name:   "Talon Pilate (Kenya)",
+            talon2_desc:   "Flat talon imported from Kenya. Lightweight and flexible, suitable for casual and flat shoes.",
+            talon3_name:   "Cedari Original",
+            talon3_desc:   "Original Cedari talon. Strong and long-lasting, trusted by professional shoemakers.",
+            fabric1_name:  "Tapis Caouch",
+            fabric1_desc:  "Rubber-based fabric used for shoe linings and inner panels. Durable and easy to work with.",
+            fabric2_name:  "Texoni",
+            fabric2_desc:  "Texoni fabric for shoe construction. Soft texture, commonly used for upper panels and linings.",
+            fabric3_name:  "Lexine",
+            fabric3_desc:  "Premium Lexine fabric. High-quality material used for the outer upper of formal and elegant shoes.",
+            fabric4_name:  "Contrefort",
+            fabric4_desc:  "Contrefort stiffener material used to reinforce the heel area of shoes. Keeps the shoe shape firm.",
+            glue1_name:    "Colle — Quick Stick Contact Adhesive",
+            glue1_desc:    "Professional contact adhesive for full shoe construction. Strong, flexible bond on rubber, leather, and fabric.",
+            glue2_name:    "Super Glue",
+            glue2_desc:    "Fast-bonding super glue for quick repairs. Strong hold on rubber, leather, and fabric surfaces.",
+            per_pair:      "pair",
+            per_metre:     "metre",
+            per_litre:     "litre",
+            per_piece:     "piece",
+            qty_label:     "Qty:",
+            order_btn:     "Place Order on WhatsApp",
+        },
+
+        rw: {
+            nav_products:  "Ibicuruzwa",
+            nav_how:       "Uburyo bikora",
+            nav_contact:   "Twandikire",
+            page_title:    "Ibicuruzwa Byacu",
+            page_sub:      "Hitamo igicuruzwa, ugene ingano, usabe kuri WhatsApp.",
+            tab_soles:     "Imipira",
+            tab_talons:    "Talons",
+            tab_fabric:    "Tapis",
+            tab_glues:     "Simenti",
+            soles_title:   "Imipira y'Inkweto",
+            soles_sub:     "Ubwoko 5 — biragurwa ku paire",
+            talons_title:  "Talons",
+            talons_sub:    "Ubwoko 3 — biragurwa ku paire",
+            fabric_title:  "Tapis ya Caoutchouc",
+            fabric_sub:    "Ubwoko 4 — biragurwa ku metero",
+            glues_title:   "Simenti",
+            glues_sub:     "Ubwoko 2 buraboneka",
+            tag_soles:     "Imipira",
+            tag_talons:    "Talons",
+            tag_fabric:    "Tapis",
+            tag_glues:     "Simenti",
+            sole1_name:    "Godasi (Volte na Rovas)",
+            sole1_desc:    "Imipira ikomeye, ubwiza bwa Volte na Rovas. Gufata neza mu nkweto zo buri munsi.",
+            sole2_name:    "Congo za Wearable",
+            sole2_desc:    "Imipira yoroheje ya Congo. Iryoshye mu nkweto zo buri munsi.",
+            sole3_name:    "Congo za Original",
+            sole3_desc:    "Imipira ya Congo yihariye. Ubwiza buizewe mu gukora inkweto.",
+            sole4_name:    "Umupira wa Safesole",
+            sole4_desc:    "Umupira wa Safesole. Gufata neza, ukurikizwa mu nkweto z'akazi.",
+            sole5_name:    "Umupira wa Cyuma mbere",
+            sole5_desc:    "Umupira wa Cyuma mbere w'ubwiza bwo hejuru. Ukurikizwa mu nkweto nziza cyane.",
+            talon1_name:   "Talon Original (Ubushinwa)",
+            talon1_desc:   "Talon yihariye ivuye Ubushinwa. Ikomeye kandi iramara igihe kirekire.",
+            talon2_name:   "Talon Pilate (Kenya)",
+            talon2_desc:   "Talon yinini ivuye Kenya. Yoroheje, ikurikizwa mu nkweto zitambitse.",
+            talon3_name:   "Cedari Original",
+            talon3_desc:   "Talon ya Cedari yihariye. Ikomeye kandi iramara, ikoreshwa n'inzobere.",
+            fabric1_name:  "Tapis Caouch",
+            fabric1_desc:  "Igitambara cy'imipira gikurikizwa imbere y'inkweto. Gikomye kandi gikora neza.",
+            fabric2_name:  "Texoni",
+            fabric2_desc:  "Igitambara cya Texoni gikurikizwa mu gukora inkweto. Cyoroheje kandi kikoreshwa hanze.",
+            fabric3_name:  "Lexine",
+            fabric3_desc:  "Igitambara cya Lexine cy'ubwiza bwo hejuru. Gikurikizwa hanze y'inkweto nziza.",
+            fabric4_name:  "Contrefort",
+            fabric4_desc:  "Igitambara cya Contrefort gikurikizwa gukomeza igice cy'inyuma y'inkweto.",
+            glue1_name:    "Colle — Quick Stick Contact Adhesive",
+            glue1_desc:    "Simenti ya lisansi yo gukora inkweto zose. Inanira kandi ikomera neza.",
+            glue2_name:    "Super Glue",
+            glue2_desc:    "Simenti ikomeye vuba, ikurikizwa mu gutuza inkweto no gukora akazi gato.",
+            per_pair:      "paire",
+            per_metre:     "metero",
+            per_litre:     "litiro",
+            per_piece:     "igice",
+            qty_label:     "Ingano:",
+            order_btn:     "Saba kuri WhatsApp",
+        },
+
+        fr: {
+            nav_products:  "Produits",
+            nav_how:       "Comment ça marche",
+            nav_contact:   "Nous contacter",
+            page_title:    "Nos Produits",
+            page_sub:      "Choisissez un produit, sélectionnez la quantité et passez commande sur WhatsApp.",
+            tab_soles:     "Semelles",
+            tab_talons:    "Talons",
+            tab_fabric:    "Tissus",
+            tab_glues:     "Colles",
+            soles_title:   "Semelles en caoutchouc",
+            soles_sub:     "5 types disponibles — vendues à la paire",
+            talons_title:  "Talons",
+            talons_sub:    "3 types disponibles — vendus à la paire",
+            fabric_title:  "Tissus caoutchouc",
+            fabric_sub:    "4 types disponibles — vendus au mètre",
+            glues_title:   "Colles",
+            glues_sub:     "2 types disponibles",
+            tag_soles:     "Semelles",
+            tag_talons:    "Talons",
+            tag_fabric:    "Tissus",
+            tag_glues:     "Colles",
+            sole1_name:    "Godasi (Volte na Rovas)",
+            sole1_desc:    "Semelle caoutchouc durable, qualité Volte et Rovas. Bonne adhérence pour chaussures formelles et quotidiennes.",
+            sole2_name:    "Congo za Wearable",
+            sole2_desc:    "Semelle Congo légère et flexible. Confortable pour les chaussures décontractées.",
+            sole3_name:    "Congo za Original",
+            sole3_desc:    "Semelle Congo originale. Qualité fiable pour la fabrication professionnelle de chaussures.",
+            sole4_name:    "Umupira wa Safesole",
+            sole4_desc:    "Semelle Safesole. Conçue pour la sécurité et l'adhérence, idéale pour les chaussures de travail.",
+            sole5_name:    "Umupira wa Cyuma mbere",
+            sole5_desc:    "Semelle Cyuma mbere haut de gamme. Qualité supérieure pour la fabrication de chaussures élégantes.",
+            talon1_name:   "Talon Original (Chine)",
+            talon1_desc:   "Talon original importé de Chine. Ferme et durable, idéal pour les chaussures formelles.",
+            talon2_name:   "Talon Pilate (Kenya)",
+            talon2_desc:   "Talon plat importé du Kenya. Léger et flexible, pour chaussures plates et décontractées.",
+            talon3_name:   "Cedari Original",
+            talon3_desc:   "Talon Cedari original. Solide et longue durée, utilisé par les cordonniers professionnels.",
+            fabric1_name:  "Tapis Caouch",
+            fabric1_desc:  "Tissu à base de caoutchouc pour doublures et panneaux intérieurs de chaussures.",
+            fabric2_name:  "Texoni",
+            fabric2_desc:  "Tissu Texoni pour la fabrication de chaussures. Texture douce pour panneaux et doublures.",
+            fabric3_name:  "Lexine",
+            fabric3_desc:  "Tissu Lexine de haute qualité. Utilisé pour le dessus extérieur des chaussures élégantes.",
+            fabric4_name:  "Contrefort",
+            fabric4_desc:  "Matériau rigide Contrefort pour renforcer la zone du talon. Maintient la forme de la chaussure.",
+            glue1_name:    "Colle — Quick Stick Contact Adhesive",
+            glue1_desc:    "Colle de contact professionnelle pour fabrication complète. Liaison solide et flexible.",
+            glue2_name:    "Super Glue",
+            glue2_desc:    "Super colle à prise rapide pour réparations. Adhérence forte sur caoutchouc, cuir et tissu.",
+            per_pair:      "paire",
+            per_metre:     "mètre",
+            per_litre:     "litre",
+            per_piece:     "pièce",
+            qty_label:     "Qté :",
+            order_btn:     "Commander sur WhatsApp",
+        }
+
+    };
+
+    /* ── Language switcher ── */
+    function setLang(lang, clickedBtn) {
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+        clickedBtn.classList.add('active');
+        const t = translations[lang];
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            const key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) {
+                el.innerHTML = t[key];
+            }
+        });
+        document.documentElement.setAttribute('lang', lang);
+    }
+
+</script>
+
+
+</body>
+</html>

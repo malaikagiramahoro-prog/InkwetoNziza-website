@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Inkweto Nziza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* ─────────────────────────────
+           RESET & BASE
+        ───────────────────────────── */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFF8EE;
+            color: #2C1A09;
+            line-height: 1.6;
+        }
+        a { text-decoration: none; }
+
+        /* ─────────────────────────────
+           COLOUR VARIABLES
+        ───────────────────────────── */
+        :root {
+            --brown-dark:  #2C1A09;
+            --brown-mid:   #3B2412;
+            --brown-warm:  #6B4423;
+            --gold:        #C9A97A;
+            --cream-mid:   #F5ECD7;
+            --cream-deep:  #E8D4B4;
+            --border:      #D4B896;
+            --whatsapp:    #25D366;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ─────────────────────────────
+           NAVIGATION
+        ───────────────────────────── */
+        header {
+            background: var(--brown-mid);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            gap: 16px;
+        }
+        .nav-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--cream-mid);
+            white-space: nowrap;
+        }
+        .nav-logo span { color: var(--gold); }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+        .nav-links a { font-size: 14px; color: var(--gold); }
+        .nav-links a:hover { color: var(--cream-mid); }
+        .nav-cta {
+            background: var(--gold);
+            color: var(--brown-mid) !important;
+            font-weight: 600;
+            padding: 9px 20px;
+            border-radius: 8px;
+        }
+        .nav-cta:hover { background: var(--cream-mid) !important; }
+
+        .lang-switcher { display: flex; gap: 6px; flex-shrink: 0; }
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+        .lang-btn:hover  { background: var(--gold); color: var(--brown-mid); }
+        .lang-btn.active { background: var(--gold); color: var(--brown-mid); }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+            flex-shrink: 0;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        /* ─────────────────────────────
+           PAGE HERO
+        ───────────────────────────── */
+        .page-hero {
+            background: var(--cream-mid);
+            padding: 52px 0 44px;
+            text-align: center;
+        }
+        .page-hero h1 {
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--brown-dark);
+            margin-bottom: 10px;
+        }
+        .page-hero p {
+            font-size: 15px;
+            color: var(--brown-warm);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* ─────────────────────────────
+           MAIN CONTENT LAYOUT
+        ───────────────────────────── */
+        .contact-page {
+            padding: 60px 0 80px;
+        }
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* ─────────────────────────────
+           LEFT COLUMN
+           Map + contact info
+        ───────────────────────────── */
+
+        /* Google Map embed */
+        .map-wrap {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+            height: 280px;
+        }
+        .map-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Contact info cards */
+        .info-cards { display: flex; flex-direction: column; gap: 14px; }
+
+        .info-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .info-card-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .info-card-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-phone     { background: var(--brown-mid); }
+        .icon-whatsapp  { background: var(--whatsapp); }
+        .icon-location  { background: var(--gold); }
+
+        .info-card-text h3 {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--brown-warm);
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .info-card-text a,
+        .info-card-text p {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--brown-dark);
+            line-height: 1.4;
+        }
+        .info-card-text a:hover { color: var(--brown-warm); }
+
+        /* ─────────────────────────────
+           RIGHT COLUMN
+           Feedback / review form
+        ───────────────────────────── */
+        .form-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 32px;
+        }
+        .form-box h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--brown-dark);
+            margin-bottom: 6px;
+        }
+        .form-box .form-intro {
+            font-size: 14px;
+            color: var(--brown-warm);
+            margin-bottom: 24px;
+        }
+
+        /* Form fields */
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--brown-warm);
+            margin-bottom: 6px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 11px 14px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            color: var(--brown-dark);
+            background: var(--cream-mid);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--brown-warm);
+            background: #fff;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Two fields side by side */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        /* Star rating */
+        .star-row {
+            display: flex;
+            gap: 6px;
+            margin-top: 4px;
+        }
+        .star {
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--cream-deep);
+            transition: color 0.15s;
+            line-height: 1;
+        }
+        .star.selected,
+        .star:hover,
+        .star:hover ~ .star { color: var(--cream-deep); }
+        .star-row:hover .star { color: var(--gold); }
+        .star-row .star:hover ~ .star { color: var(--cream-deep); }
+
+        /* Submit button */
+        .submit-btn {
+            width: 100%;
+            background: var(--brown-mid);
+            color: var(--cream-mid);
+            font-size: 15px;
+            font-weight: 600;
+            padding: 13px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            margin-top: 4px;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover { background: var(--brown-dark); }
+
+        /* Success message shown after submit */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 32px 0 8px;
+        }
+        .form-success .check {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        .form-success h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--brown-dark);
+            margin-bottom: 8px;
+        }
+        .form-success p {
+            font-size: 14px;
+            color: var(--brown-warm);
+        }
+
+        /* ─────────────────────────────
+           FOOTER
+        ───────────────────────────── */
+        footer {
+            background: var(--brown-dark);
+            padding: 28px 0;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .footer-logo { font-size: 15px; font-weight: 600; color: var(--cream-mid); }
+        .footer-logo span { color: var(--gold); }
+        .footer-links { display: flex; gap: 22px; list-style: none; }
+        .footer-links a { font-size: 13px; color: var(--gold); }
+        .footer-links a:hover { color: var(--cream-mid); }
+        .footer-copy { font-size: 12px; color: var(--brown-warm); }
+
+        /* ─────────────────────────────
+           MOBILE
+        ───────────────────────────── */
+        @media (max-width: 768px) {
+            .contact-layout { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 58px; left: 0; right: 0;
+                background: var(--brown-mid);
+                padding: 20px 24px;
+                gap: 16px;
+                z-index: 99;
+            }
+            .nav-toggle { display: flex; }
+            header { position: relative; }
+            .page-hero h1 { font-size: 26px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+        }
+
+    </style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════ -->
+<header>
+    <div class="container">
+        <nav class="nav">
+
+            <a href="index.html" class="nav-logo">Inkweto<span> Nziza</span></a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="products.html"     data-i18n="nav_products">Products</a></li>
+                <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">Contact Us</a></li>
+            </ul>
+
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en', this)">EN</button>
+                <button class="lang-btn"        onclick="setLang('rw', this)">RW</button>
+                <button class="lang-btn"        onclick="setLang('fr', this)">FR</button>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+
+        </nav>
+    </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════ -->
+<section class="page-hero">
+    <div class="container">
+        <h1 data-i18n="page_title">Contact Us</h1>
+        <p  data-i18n="page_sub">Find us at our shop, call us, or leave your feedback below.</p>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════ -->
+<section class="contact-page">
+    <div class="container">
+        <div class="contact-layout">
+
+
+            <!-- ════════════════════════
+                 LEFT: MAP + CONTACT INFO
+            ════════════════════════ -->
+            <div>
+
+                <div class="map-wrap">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.508!2d30.0588!3d-1.9441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca42580b9b3c7%3A0x4e1c2f3a5b6d7e8f!2sMuhima%2C%20Kigali!5e0!3m2!1sen!2srw!4v1700000000000"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+                <!-- Contact info cards -->
+                <div class="info-cards">
+
+                    <!-- Phone -->
+                    <div class="info-card">
+                        <div class="info-card-icon icon-phone">
+                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+                        </div>
+                        <div class="info-card-text">
+                            <h3 data-i18n="label_phone">Phone</h3>
+                            <a href="tel:+250788431726">+250 788 431 726</a>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp -->
+                    <div class="info-card">
+                        <div class="info-card-icon icon-whatsapp">
+                            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+                        </div>
+                        <div class="info-card-text">
+                            <h3 data-i18n="label_whatsapp">WhatsApp</h3>
+                            <a href="https://wa.me/250788431726" target="_blank">+250 788 431 726</a>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="info-card">
+                        <div class="info-card-icon icon-location">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div class="info-card-text">
+                            <h3 data-i18n="label_location">Location</h3>
+                            <!--
+                                TO ADD THE REAL GOOGLE MAPS LINK:
+                                Replace the href below with your Google Maps share link
+                            -->
+                            <a href="https://maps.google.com/?q=Muhima,Kigali,Rwanda" target="_blank" data-i18n="location_text">
+                                Muhima<br>Nyarugenge, Kigali
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- ════════════════════════
+                 RIGHT: FEEDBACK FORM
+            ════════════════════════ -->
+            <div class="form-box">
+                <h2 data-i18n="form_title">Leave a Review</h2>
+                <p class="form-intro" data-i18n="form_intro">We value your feedback. Tell us about your experience with Inkweto Nziza.</p>
+
+                <!--
+                    HOW TO MAKE THIS FORM SEND EMAILS:
+                    1. Go to https://formspree.io and sign up free
+                    2. Create a new form — enter malaikagiramahoro@gmail.com as the email
+                    3. They give you a link like: https://formspree.io/f/xxxxxxxx
+                    4. Replace YOUR_FORMSPREE_ID below with that link
+                -->
+                <form id="feedbackForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+
+                    <!-- Name + Email side by side -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" data-i18n="label_name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="e.g. Jean Paul" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="label_email">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="malaikagiramahoro@gmail.com">
+                        </div>
+                    </div>
+
+                    <!-- Star rating -->
+                    <div class="form-group">
+                        <label data-i18n="label_rating">Rating</label>
+                        <div class="star-row" id="starRow">
+                            <span class="star" data-value="1" onclick="setRating(1)">★</span>
+                            <span class="star" data-value="2" onclick="setRating(2)">★</span>
+                            <span class="star" data-value="3" onclick="setRating(3)">★</span>
+                            <span class="star" data-value="4" onclick="setRating(4)">★</span>
+                            <span class="star" data-value="5" onclick="setRating(5)">★</span>
+                        </div>
+                        <!-- Hidden field that stores the rating number -->
+                        <input type="hidden" id="ratingValue" name="rating" value="">
+                    </div>
+
+                    <!-- Product they bought -->
+                    <div class="form-group">
+                        <label for="product" data-i18n="label_product">Which product did you buy?</label>
+                        <select id="product" name="product">
+                            <option value="" data-i18n="product_default">Select a product...</option>
+                            <option value="Rubber Sole Type 1" data-i18n="product_s1">Rubber Sole — Type 1</option>
+                            <option value="Rubber Sole Type 2" data-i18n="product_s2">Rubber Sole — Type 2</option>
+                            <option value="Rubber Sole Type 3" data-i18n="product_s3">Rubber Sole — Type 3</option>
+                            <option value="Super Glue"         data-i18n="product_g1">Super Glue</option>
+                            <option value="Shoe Glue"          data-i18n="product_g2">Shoe Glue</option>
+                            <option value="Microfiber Fabric Brown"  data-i18n="product_f1">Microfiber Fabric — Brown</option>
+                            <option value="Microfiber Fabric Type 2" data-i18n="product_f2">Microfiber Fabric — Type 2</option>
+                            <option value="Microfiber Fabric Type 3" data-i18n="product_f3">Microfiber Fabric — Type 3</option>
+                        </select>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="form-group">
+                        <label for="message" data-i18n="label_message">Your feedback</label>
+                        <textarea id="message" name="message" placeholder="Tell us what you think..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" data-i18n="submit_btn">Send Feedback</button>
+
+                </form>
+
+                <!-- Success message shown after form is submitted -->
+                <div class="form-success" id="formSuccess">
+                    <div class="check">✅</div>
+                    <h3 data-i18n="success_title">Thank you!</h3>
+                    <p data-i18n="success_msg">Your feedback has been sent. We really appreciate it.</p>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-logo">Inkweto<span> Nziza</span></div>
+            <ul class="footer-links">
+                <li><a href="products.html"     data-i18n="nav_products">Products</a></li>
+                <li><a href="contact.html"      data-i18n="nav_contact">Contact Us</a></li>
+            </ul>
+            <p class="footer-copy">© 2025 Inkweto Nziza</p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════ -->
+<script>
+
+    /* ── Mobile nav ── */
+    document.getElementById('navToggle').addEventListener('click', function () {
+        document.getElementById('navLinks').classList.toggle('open');
+    });
+
+
+    /* ── Star rating ── */
+    function setRating(value) {
+        document.getElementById('ratingValue').value = value;
+        const stars = document.querySelectorAll('.star');
+        stars.forEach(function(star) {
+            if (parseInt(star.getAttribute('data-value')) <= value) {
+                star.style.color = '#C9A97A';
+            } else {
+                star.style.color = '#E8D4B4';
+            }
+        });
+    }
+
+
+    /* ── Form submit ──
+       When the form is submitted successfully,
+       hide the form and show the thank you message.
+    */
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+        /* Only show success message if Formspree ID has been set */
+        const action = this.getAttribute('action');
+        if (action.includes('YOUR_FORMSPREE_ID')) {
+            /* Formspree not set up yet — just show the success message for testing */
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+        }
+        /* If Formspree IS set up, the form submits normally to their server */
+    });
+
+
+    /* ── Translations ── */
+    const translations = {
+
+        en: {
+            nav_products:   "Products",
+            nav_how:        "How it works",
+            nav_contact:    "Contact Us",
+
+            page_title:     "Contact Us",
+            page_sub:       "Find us at our shop, call us, or leave your feedback below.",
+
+            label_phone:    "Phone",
+            label_whatsapp: "WhatsApp",
+            label_location: "Location",
+            location_text:  "Kumuhima, Muhima<br>Nyarugenge, Kigali",
+
+            form_title:     "Leave a Review",
+            form_intro:     "We value your feedback. Tell us about your experience with Inkweto Nziza.",
+            label_name:     "Your Name",
+            label_email:    "Your Email",
+            label_rating:   "Rating",
+            label_product:  "Which product did you buy?",
+            label_message:  "Your feedback",
+            product_default:"Select a product...",
+            product_s1:     "Rubber Sole — Type 1",
+            product_s2:     "Rubber Sole — Type 2",
+            product_s3:     "Rubber Sole — Type 3",
+            product_g1:     "Super Glue",
+            product_g2:     "Shoe Glue",
+            product_f1:     "Microfiber Fabric — Brown",
+            product_f2:     "Microfiber Fabric — Type 2",
+            product_f3:     "Microfiber Fabric — Type 3",
+            submit_btn:     "Send Feedback",
+            success_title:  "Thank you!",
+            success_msg:    "Your feedback has been sent. We really appreciate it.",
+        },
+
+        rw: {
+            nav_products:   "Ibicuruzwa",
+            nav_how:        "Uburyo bikora",
+            nav_contact:    "Twandikire",
+
+            page_title:     "Twandikire",
+            page_sub:       "Dushake ku iduka ryacu, uduhamagare, cyangwa usige ibitekerezo byawe.",
+
+            label_phone:    "Telefoni",
+            label_whatsapp: "WhatsApp",
+            label_location: "Aderesi",
+            location_text:  "Kumuhima, Muhima<br>Nyarugenge, Kigali",
+
+            form_title:     "Siga Igitekerezo",
+            form_intro:     "Ibitekerezo byawe biratunzwe. Tubiganire ku birebana n'Inkweto Nziza.",
+            label_name:     "Izina ryawe",
+            label_email:    "Imeli yawe",
+            label_rating:   "Ikipimo",
+            label_product:  "Ni igicuruzwa ikihe waguriye?",
+            label_message:  "Ibitekerezo byawe",
+            product_default:"Hitamo igicuruzwa...",
+            product_s1:     "Icyondo — Ubwoko 1",
+            product_s2:     "Icyondo — Ubwoko 2",
+            product_s3:     "Icyondo — Ubwoko 3",
+            product_g1:     "Super Glue",
+            product_g2:     "Simenti y'Inkweto",
+            product_f1:     "Igitambara — Icyatsi kibisi",
+            product_f2:     "Igitambara — Ubwoko 2",
+            product_f3:     "Igitambara — Ubwoko 3",
+            submit_btn:     "Ohereza Igitekerezo",
+            success_title:  "Urakoze!",
+            success_msg:    "Igitekerezo cyawe cyoherejwe. Turakukoze cyane.",
+        },
+
+        fr: {
+            nav_products:   "Produits",
+            nav_how:        "Comment ça marche",
+            nav_contact:    "Nous contacter",
+
+            page_title:     "Contactez-nous",
+            page_sub:       "Trouvez-nous à notre boutique, appelez-nous ou laissez vos commentaires ci-dessous.",
+
+            label_phone:    "Téléphone",
+            label_whatsapp: "WhatsApp",
+            label_location: "Adresse",
+            location_text:  "Kumuhima, Muhima<br>Nyarugenge, Kigali",
+
+            form_title:     "Laisser un avis",
+            form_intro:     "Vos commentaires sont précieux. Partagez votre expérience avec Inkweto Nziza.",
+            label_name:     "Votre nom",
+            label_email:    "Votre e-mail",
+            label_rating:   "Note",
+            label_product:  "Quel produit avez-vous acheté ?",
+            label_message:  "Votre avis",
+            product_default:"Sélectionnez un produit...",
+            product_s1:     "Semelle caoutchouc — Type 1",
+            product_s2:     "Semelle caoutchouc — Type 2",
+            product_s3:     "Semelle caoutchouc — Type 3",
+            product_g1:     "Super Glue",
+            product_g2:     "Colle à chaussures",
+            product_f1:     "Tissu microfibre — Marron",
+            product_f2:     "Tissu microfibre — Type 2",
+            product_f3:     "Tissu microfibre — Type 3",
+            submit_btn:     "Envoyer l'avis",
+            success_title:  "Merci !",
+            success_msg:    "Votre avis a été envoyé. Nous vous en remercions sincèrement.",
+        }
+
+    };
+
+    /* ── Language switcher ── */
+    function setLang(lang, clickedBtn) {
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+        clickedBtn.classList.add('active');
+
+        const t = translations[lang];
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            const key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) {
+                el.innerHTML = t[key];
+            }
+        });
+
+        document.documentElement.setAttribute('lang', lang);
+    }
+
+</script>
+
+
+</body>
+</html>
