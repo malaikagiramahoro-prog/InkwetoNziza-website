@@ -337,10 +337,11 @@
         <nav class="nav">
             <a href="index.html" class="nav-logo">Inkweto<span> Nziza</span></a>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="products.html"     data-i18n="nav_products">Products</a></li>
-                <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">Contact Us</a></li>
-            </ul>
+           <ul class="nav-links" id="navLinks">
+    <li><a href="index.html"    data-i18n="nav_home">Home</a></li>
+    <li><a href="products.html" data-i18n="nav_products">Products</a></li>
+    <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">Contact Us</a></li>
+</ul>
 
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="setLang('en', this)">EN</button>
@@ -463,6 +464,7 @@
     const translations = {
 
         en: {
+            nav_home:     "Home",
             nav_products:  "Products",
             nav_how:       "How it works",
             nav_contact:   "Contact Us",
@@ -485,6 +487,7 @@
         },
 
         rw: {
+            nav_home:      "Abhabanza",
             nav_products:  "Ibicuruzwa",
             nav_how:       "Uburyo bikora",
             nav_contact:   "Twandikire",
@@ -507,6 +510,7 @@
         },
 
         fr: {
+            nav_home:     "Accueil",
             nav_products:  "Produits",
             nav_how:       "Comment ça marche",
             nav_contact:   "Nous contacter",
@@ -532,22 +536,34 @@
 
 
     /* ── Language switcher ── */
-    function setLang(lang, clickedBtn) {
-        document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.classList.remove('active');
-        });
-        clickedBtn.classList.add('active');
+  /* Save language choice and apply it */
+function setLang(lang, clickedBtn) {
 
-        const t = translations[lang];
-        document.querySelectorAll('[data-i18n]').forEach(function(el) {
-            const key = el.getAttribute('data-i18n');
-            if (t[key] !== undefined) {
-                el.innerHTML = t[key];
-            }
-        });
+    /* Save the chosen language so other pages remember it */
+    localStorage.setItem('inkweto-lang', lang);
 
-        document.documentElement.setAttribute('lang', lang);
-    }
+    /* Highlight the clicked button */
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    if (clickedBtn) { clickedBtn.classList.add('active'); }
+
+    /* Swap all text using data-i18n keys */
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) { el.innerHTML = t[key]; }
+    });
+
+    document.documentElement.setAttribute('lang', lang);
+}
+
+/* When the page loads, apply the saved language automatically */
+(function () {
+    const saved = localStorage.getItem('inkweto-lang') || 'en';
+    const activeBtn = document.querySelector('.lang-btn[onclick*="' + saved + '"]');
+    setLang(saved, activeBtn);
+})();
 
 </script>
 

@@ -31,26 +31,11 @@
             --whatsapp:    #25D366;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
         /* ── NAVIGATION ── */
-        header {
-            background: var(--brown-mid);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 0;
-            gap: 16px;
-        }
+        header { background: var(--brown-mid); position: sticky; top: 0; z-index: 100; }
+        .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 16px; }
         .nav-logo { font-size: 18px; font-weight: 600; color: var(--cream-mid); white-space: nowrap; }
         .nav-logo span { color: var(--gold); }
         .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
@@ -79,11 +64,8 @@
 
         /* ── CATEGORY TABS ── */
         .category-tabs {
-            background: #fff;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 58px;
-            z-index: 90;
+            background: #fff; border-bottom: 1px solid var(--border);
+            position: sticky; top: 58px; z-index: 90;
         }
         .tabs-inner {
             display: flex; gap: 4px; padding: 0 24px;
@@ -102,60 +84,103 @@
         .product-section { margin-bottom: 72px; }
         .product-section:last-child { margin-bottom: 0; }
 
-        .section-heading { margin-bottom: 28px; padding-bottom: 14px; border-bottom: 1.5px solid var(--border); }
-        .section-heading h2 { font-size: 22px; font-weight: 600; color: var(--brown-dark); margin-bottom: 4px; }
-        .section-heading p  { font-size: 13px; color: var(--brown-warm); }
+        /* ── SECTION HEADING with photo ── */
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1.5px solid var(--border);
+        }
 
+        /* Small section photo — only on the heading */
+        .section-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--cream-deep);
+    border: 1px solid var(--border);
+}
+
+        .section-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Placeholder shown when no photo yet */
+        .section-photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.4;
+        }
+        .section-photo-placeholder svg {
+            width: 28px; height: 28px; fill: none;
+            stroke: var(--brown-warm); stroke-width: 1.5;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        .section-heading-text h2 { font-size: 22px; font-weight: 600; color: var(--brown-dark); margin-bottom: 4px; }
+        .section-heading-text p  { font-size: 13px; color: var(--brown-warm); }
+
+        /* ── PRODUCTS GRID ── */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
         }
 
-        /* ── PRODUCT CARD ── */
+        /* ── PRODUCT CARD — no photo, compact ── */
         .product-card {
-            background: #fff; border: 1px solid var(--border); border-radius: 14px;
-            overflow: hidden; display: flex; flex-direction: column;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(59,36,18,0.12); }
+        .product-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(59,36,18,0.10); }
 
-        .product-img { height: 190px; background: var(--cream-deep); overflow: hidden; flex-shrink: 0; }
-        .img-placeholder {
-            width: 100%; height: 100%; display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            color: var(--brown-warm); font-size: 12px; gap: 6px; opacity: 0.45;
+        /* Photo area — only used for glue cards */
+        .product-img {
+            height: 140px;
+            background: var(--cream-deep);
+            overflow: hidden;
+            flex-shrink: 0;
         }
-        .img-placeholder svg {
-            width: 36px; height: 36px; fill: none; stroke: currentColor;
-            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
-        }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; }
 
-        .product-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+        .product-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
         .product-tag {
             display: inline-block; background: var(--cream-mid); color: var(--brown-warm);
             font-size: 10px; font-weight: 500; padding: 2px 9px; border-radius: 20px;
             margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em;
         }
-        .product-name { font-size: 16px; font-weight: 600; color: var(--brown-dark); margin-bottom: 6px; }
-        .product-desc { font-size: 13px; color: var(--brown-warm); line-height: 1.6; margin-bottom: 16px; flex: 1; }
+        .product-name { font-size: 15px; font-weight: 600; color: var(--brown-dark); margin-bottom: 5px; }
+        .product-desc { font-size: 13px; color: var(--brown-warm); line-height: 1.5; margin-bottom: 14px; flex: 1; }
 
-        .product-price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; }
-        .product-price { font-size: 22px; font-weight: 600; color: var(--brown-dark); }
+        .product-price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 12px; }
+        .product-price { font-size: 20px; font-weight: 600; color: var(--brown-dark); }
         .product-unit  { font-size: 13px; color: var(--brown-warm); }
 
         /* ── QUANTITY PICKER ── */
-        .qty-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+        .qty-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
         .qty-label { font-size: 13px; color: var(--brown-warm); font-weight: 500; }
         .qty-controls { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
         .qty-btn {
-            background: var(--cream-mid); border: none; width: 34px; height: 34px;
-            font-size: 18px; color: var(--brown-mid); cursor: pointer;
+            background: var(--cream-mid); border: none; width: 32px; height: 32px;
+            font-size: 16px; color: var(--brown-mid); cursor: pointer;
             display: flex; align-items: center; justify-content: center;
         }
         .qty-btn:hover { background: var(--cream-deep); }
         .qty-input {
-            width: 46px; height: 34px; border: none;
+            width: 44px; height: 32px; border: none;
             border-left: 1px solid var(--border); border-right: 1px solid var(--border);
             text-align: center; font-size: 14px; font-weight: 500;
             color: var(--brown-dark); font-family: 'Inter', sans-serif; background: #fff;
@@ -165,13 +190,13 @@
         /* ── ORDER BUTTON ── */
         .order-btn {
             display: flex; align-items: center; justify-content: center; gap: 8px;
-            background: var(--whatsapp); color: #fff; font-size: 14px; font-weight: 600;
-            padding: 12px 16px; border-radius: 8px; border: none; cursor: pointer;
+            background: var(--whatsapp); color: #fff; font-size: 13px; font-weight: 600;
+            padding: 11px 14px; border-radius: 8px; border: none; cursor: pointer;
             width: 100%; font-family: 'Inter', sans-serif; transition: opacity 0.2s;
         }
         .order-btn:hover { opacity: 0.88; }
         .order-btn svg {
-            width: 18px; height: 18px; fill: none; stroke: #fff;
+            width: 16px; height: 16px; fill: none; stroke: #fff;
             stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
         }
 
@@ -197,6 +222,7 @@
             header { position: relative; }
             .page-hero h1 { font-size: 26px; }
             .footer-inner { flex-direction: column; align-items: flex-start; }
+            .section-photo { width: 60px; height: 60px; }
         }
 
     </style>
@@ -212,7 +238,8 @@
         <nav class="nav">
             <a href="index.html" class="nav-logo">Inkweto<span> Nziza</span></a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="products.html"     data-i18n="nav_products">Products</a></li>
+                <li><a href="index.html"   data-i18n="nav_home">Home</a></li>
+                <li><a href="products.html" data-i18n="nav_products">Products</a></li>
                 <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">Contact Us</a></li>
             </ul>
             <div class="lang-switcher">
@@ -261,27 +288,27 @@
 
         <!-- ════════════════════════
              SECTION 1: RUBBER SOLES
-             5 types
         ════════════════════════ -->
         <div class="product-section" id="soles">
             <div class="section-heading">
-                <h2 data-i18n="soles_title">Rubber Soles</h2>
-                <p  data-i18n="soles_sub">5 types available — sold per pair</p>
+
+             <div class="section-photo">
+    <img src="image.jpg.png" alt="Rubber Soles">
+</div>
+
+                <div class="section-heading-text">
+                    <h2 data-i18n="soles_title">Rubber Soles</h2>
+                    <p  data-i18n="soles_sub">5 types available — sold per pair</p>
+                </div>
             </div>
+
             <div class="products-grid">
 
-                <!-- 1. Godasi (Volte na Rovas) -->
+                <!-- 1. Godasi -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/sole-godasi.jpg" alt="Godasi Sole"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>sole-godasi.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_soles">Soles</span>
-                        <div class="product-name" data-i18n="sole1_name">Godasi (Volte na Rovas)</div>
+                        <div class="product-name" data-i18n="sole1_name">Godasi (Volte and Rovas)</div>
                         <div class="product-desc" data-i18n="sole1_desc">Durable rubber sole, Volte and Rovas quality. Strong grip for everyday and formal footwear.</div>
                         <div class="product-price-row">
                             <span class="product-price">2,500</span>
@@ -304,16 +331,9 @@
 
                 <!-- 2. Congo za Wearable -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/sole-congo-wearable.jpg" alt="Congo Wearable Sole"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>sole-congo-wearable.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_soles">Soles</span>
-                        <div class="product-name" data-i18n="sole2_name">Congo za Wearable</div>
+                        <div class="product-name" data-i18n="sole2_name"> Congo Wearable</div>
                         <div class="product-desc" data-i18n="sole2_desc">Flexible and lightweight Congo sole. Comfortable for everyday casual footwear.</div>
                         <div class="product-price-row">
                             <span class="product-price">2,000</span>
@@ -336,16 +356,9 @@
 
                 <!-- 3. Congo za Original -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/sole-congo-original.jpg" alt="Congo Original Sole"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>sole-congo-original.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_soles">Soles</span>
-                        <div class="product-name" data-i18n="sole3_name">Congo za Original</div>
+                        <div class="product-name" data-i18n="sole3_name">Congo Original</div>
                         <div class="product-desc" data-i18n="sole3_desc">Original Congo rubber sole. Reliable quality for professional shoe construction.</div>
                         <div class="product-price-row">
                             <span class="product-price">2,500</span>
@@ -366,18 +379,11 @@
                     </div>
                 </div>
 
-                <!-- 4. Umupira wa Safesole -->
+                <!-- 4. Safesole -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/sole-safesole.jpg" alt="Safesole"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>sole-safesole.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_soles">Soles</span>
-                        <div class="product-name" data-i18n="sole4_name">Umupira wa Safesole</div>
+                        <div class="product-name" data-i18n="sole4_name">Safesole</div>
                         <div class="product-desc" data-i18n="sole4_desc">Safesole rubber sole. Designed for safety and grip, suitable for work and outdoor shoes.</div>
                         <div class="product-price-row">
                             <span class="product-price">2,500</span>
@@ -398,18 +404,11 @@
                     </div>
                 </div>
 
-                <!-- 5. Umupira wa Cyuma mbere -->
+                <!-- 5. Cyuma mbere -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/sole-cyuma.jpg" alt="Cyuma mbere Sole"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>sole-cyuma.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_soles">Soles</span>
-                        <div class="product-name" data-i18n="sole5_name">Umupira wa Cyuma mbere</div>
+                        <div class="product-name" data-i18n="sole5_name">Cyuma mbere</div>
                         <div class="product-desc" data-i18n="sole5_desc">Premium Cyuma mbere rubber sole. Top-of-the-range quality for high-end shoe construction.</div>
                         <div class="product-price-row">
                             <span class="product-price">10,000</span>
@@ -436,24 +435,24 @@
 
         <!-- ════════════════════════
              SECTION 2: TALONS
-             3 types
         ════════════════════════ -->
         <div class="product-section" id="talons">
             <div class="section-heading">
-                <h2 data-i18n="talons_title">Talons</h2>
-                <p  data-i18n="talons_sub">3 types available — sold per pair</p>
+
+                <div class="section-photo">
+    <img src="image.jpg.jpeg" alt="Talons">
+                </div>
+
+                <div class="section-heading-text">
+                    <h2 data-i18n="talons_title">Talons</h2>
+                    <p  data-i18n="talons_sub">3 types available — sold per pair</p>
+                </div>
             </div>
+
             <div class="products-grid">
 
-                <!-- 1. Talon Original (China) -->
+                <!-- 1. Talon Original China -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/talon-original.jpg" alt="Talon Original"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>talon-original.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_talons">Talons</span>
                         <div class="product-name" data-i18n="talon1_name">Talon Original (China)</div>
@@ -477,15 +476,8 @@
                     </div>
                 </div>
 
-                <!-- 2. Talon Pilate (Kenya) -->
+                <!-- 2. Talon Pilate Kenya -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/talon-pilate.jpg" alt="Talon Pilate"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>talon-pilate.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_talons">Talons</span>
                         <div class="product-name" data-i18n="talon2_name">Talon Pilate (Kenya)</div>
@@ -511,13 +503,6 @@
 
                 <!-- 3. Cedari Original -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/talon-cedari.jpg" alt="Cedari Original"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>talon-cedari.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_talons">Talons</span>
                         <div class="product-name" data-i18n="talon3_name">Cedari Original</div>
@@ -547,28 +532,28 @@
 
         <!-- ════════════════════════
              SECTION 3: FABRIC
-             4 types
         ════════════════════════ -->
         <div class="product-section" id="fabric">
             <div class="section-heading">
-                <h2 data-i18n="fabric_title">Caoutchouc Fabric</h2>
-                <p  data-i18n="fabric_sub">4 types available — sold per metre</p>
+
+               <div class="section-photo">
+    <img src="image.jpg (4).png" alt="Rubber Soles">
+                </div>
+
+                <div class="section-heading-text">
+                    <h2 data-i18n="fabric_title">Caoutchouc Fabric</h2>
+                    <p  data-i18n="fabric_sub">4 types available — sold per metre</p>
+                </div>
             </div>
+
             <div class="products-grid">
 
                 <!-- 1. Tapis Caouch -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/fabric-tapis.jpg" alt="Tapis Caouch"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>fabric-tapis.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_fabric">Fabric</span>
                         <div class="product-name" data-i18n="fabric1_name">Tapis Caouch</div>
-                        <div class="product-desc" data-i18n="fabric1_desc">Rubber-based fabric used for shoe linings and inner panels. Durable and easy to work with.</div>
+                        <div class="product-desc" data-i18n="fabric1_desc">Rubber-based fabric for shoe linings and inner panels. Durable and easy to work with.</div>
                         <div class="product-price-row">
                             <span class="product-price">5,500</span>
                             <span class="product-unit">RWF / <span data-i18n="per_metre">metre</span></span>
@@ -590,13 +575,6 @@
 
                 <!-- 2. Texoni -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/fabric-texoni.jpg" alt="Texoni"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>fabric-texoni.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_fabric">Fabric</span>
                         <div class="product-name" data-i18n="fabric2_name">Texoni</div>
@@ -622,17 +600,10 @@
 
                 <!-- 3. Lexine -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/fabric-lexine.jpg" alt="Lexine"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>fabric-lexine.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_fabric">Fabric</span>
                         <div class="product-name" data-i18n="fabric3_name">Lexine</div>
-                        <div class="product-desc" data-i18n="fabric3_desc">Premium Lexine fabric. High-quality material used for the outer upper of formal and elegant shoes.</div>
+                        <div class="product-desc" data-i18n="fabric3_desc">Premium Lexine fabric. High-quality material for the outer upper of formal and elegant shoes.</div>
                         <div class="product-price-row">
                             <span class="product-price">10,000</span>
                             <span class="product-unit">RWF / <span data-i18n="per_metre">metre</span></span>
@@ -654,17 +625,10 @@
 
                 <!-- 4. Contrefort -->
                 <div class="product-card">
-                    <div class="product-img">
-                        <!-- <img src="images/fabric-contrefort.jpg" alt="Contrefort"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>fabric-contrefort.jpg</small>
-                        </div>
-                    </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_fabric">Fabric</span>
                         <div class="product-name" data-i18n="fabric4_name">Contrefort</div>
-                        <div class="product-desc" data-i18n="fabric4_desc">Contrefort stiffener material used to reinforce the heel area of shoes. Keeps the shoe shape firm.</div>
+                        <div class="product-desc" data-i18n="fabric4_desc">Stiffener material to reinforce the heel area. Keeps the shoe shape firm.</div>
                         <div class="product-price-row">
                             <span class="product-price">5,000</span>
                             <span class="product-unit">RWF / <span data-i18n="per_metre">metre</span></span>
@@ -690,27 +654,28 @@
 
         <!-- ════════════════════════
              SECTION 4: GLUES
-             2 types
+             Each glue has its own photo
         ════════════════════════ -->
         <div class="product-section" id="glues">
             <div class="section-heading">
-                <h2 data-i18n="glues_title">Glues</h2>
-                <p  data-i18n="glues_sub">2 types available</p>
+
+                <div class="section-heading-text">
+                    <h2 data-i18n="glues_title">Glues</h2>
+                    <p  data-i18n="glues_sub">2 types available</p>
+                </div>
             </div>
+
             <div class="products-grid">
 
-                <!-- 1. Colle Quick Stick -->
+                <!-- 1. Colle Quick Stick — has its own photo -->
                 <div class="product-card">
                     <div class="product-img">
-                        <!-- <img src="images/glue-quickstick.jpg" alt="Quick Stick Contact Adhesive"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>glue-quickstick.jpg</small>
-                        </div>
+
+                        <img src="image.jpg (2).png" alt="Quick Stick Contact Adhesive">
                     </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_glues">Glues</span>
-                        <div class="product-name" data-i18n="glue1_name">Colle — Quick Stick Contact Adhesive</div>
+                        <div class="product-name" data-i18n="glue1_name">Colle — Quick Stick</div>
                         <div class="product-desc" data-i18n="glue1_desc">Professional contact adhesive for full shoe construction. Strong, flexible bond on rubber, leather, and fabric.</div>
                         <div class="product-price-row">
                             <span class="product-price">6,000</span>
@@ -731,14 +696,11 @@
                     </div>
                 </div>
 
-                <!-- 2. Super Glue -->
+                <!-- 2. Super Glue — has its own photo -->
                 <div class="product-card">
                     <div class="product-img">
-                        <!-- <img src="images/glue-super.jpg" alt="Super Glue"> -->
-                        <div class="img-placeholder">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                            <small>glue-super.jpg</small>
-                        </div>
+                    
+                        <img src="image.jpg (3).png" alt="Super Glue">
                     </div>
                     <div class="product-body">
                         <span class="product-tag" data-i18n="tag_glues">Glues</span>
@@ -779,8 +741,9 @@
         <div class="footer-inner">
             <div class="footer-logo">Inkweto<span> Nziza</span></div>
             <ul class="footer-links">
-                <li><a href="products.html"     data-i18n="nav_products">Products</a></li>
-                <li><a href="contact.html"      data-i18n="nav_contact">Contact Us</a></li>
+                <li><a href="index.html"    data-i18n="nav_home">Home</a></li>
+                <li><a href="products.html" data-i18n="nav_products">Products</a></li>
+                <li><a href="contact.html"  data-i18n="nav_contact">Contact Us</a></li>
             </ul>
             <p class="footer-copy">© 2025 Inkweto Nziza</p>
         </div>
@@ -805,15 +768,11 @@
         let current = '';
         sections.forEach(function (id) {
             const el = document.getElementById(id);
-            if (el && window.scrollY >= el.offsetTop - 120) {
-                current = id;
-            }
+            if (el && window.scrollY >= el.offsetTop - 120) { current = id; }
         });
         tabs.forEach(function (tab) {
             tab.classList.remove('active');
-            if (tab.getAttribute('href') === '#' + current) {
-                tab.classList.add('active');
-            }
+            if (tab.getAttribute('href') === '#' + current) { tab.classList.add('active'); }
         });
     });
 
@@ -826,33 +785,28 @@
     }
 
     /* ── WhatsApp order ──
-       TO SWITCH TO MOM'S NUMBER:
-       Change 250784626577  →  250788431726
+       TO SWITCH TO MOM'S NUMBER: change 250784626577 → 250788431726
     */
     function orderOnWhatsApp(btn, productName, pricePerUnit, unit) {
         const card  = btn.closest('.product-card');
         const input = card.querySelector('.qty-input');
         const qty   = parseInt(input.value) || 1;
         const total = (qty * pricePerUnit).toLocaleString();
-
         const message =
             'Hello Inkweto Nziza! I would like to place an order:%0A%0A' +
             'Product: ' + productName + '%0A' +
             'Quantity: ' + qty + ' ' + unit + (qty > 1 ? 's' : '') + '%0A' +
             'Total: ' + total + ' RWF%0A%0A' +
             'Please confirm availability. Thank you!';
-
-        /* TEST NUMBER — swap to 250788431726 when ready for mom */
         window.open('https://wa.me/250784626577?text=' + message, '_blank');
     }
 
 
     /* ── Translations ── */
     const translations = {
-
         en: {
+            nav_home:      "Home",
             nav_products:  "Products",
-            nav_how:       "How it works",
             nav_contact:   "Contact Us",
             page_title:    "Our Products",
             page_sub:      "Choose a product, select your quantity, and place your order directly on WhatsApp.",
@@ -868,114 +822,98 @@
             fabric_sub:    "4 types available — sold per metre",
             glues_title:   "Glues",
             glues_sub:     "2 types available",
-            tag_soles:     "Soles",
-            tag_talons:    "Talons",
-            tag_fabric:    "Fabric",
-            tag_glues:     "Glues",
-            sole1_name:    "Godasi (Volte na Rovas)",
-            sole1_desc:    "Durable rubber sole, Volte and Rovas quality. Strong grip for everyday and formal footwear.",
-            sole2_name:    "Congo za Wearable",
-            sole2_desc:    "Flexible and lightweight Congo sole. Comfortable for everyday casual footwear.",
-            sole3_name:    "Congo za Original",
-            sole3_desc:    "Original Congo rubber sole. Reliable quality for professional shoe construction.",
-            sole4_name:    "Umupira wa Safesole",
-            sole4_desc:    "Safesole rubber sole. Designed for safety and grip, suitable for work and outdoor shoes.",
-            sole5_name:    "Umupira wa Cyuma mbere",
-            sole5_desc:    "Premium Cyuma mbere rubber sole. Top-of-the-range quality for high-end shoe construction.",
-            talon1_name:   "Talon Original (China)",
-            talon1_desc:   "Original talon imported from China. Firm and durable, ideal for formal and dress shoes.",
-            talon2_name:   "Talon Pilate (Kenya)",
-            talon2_desc:   "Flat talon imported from Kenya. Lightweight and flexible, suitable for casual and flat shoes.",
-            talon3_name:   "Cedari Original",
-            talon3_desc:   "Original Cedari talon. Strong and long-lasting, trusted by professional shoemakers.",
-            fabric1_name:  "Tapis Caouch",
-            fabric1_desc:  "Rubber-based fabric used for shoe linings and inner panels. Durable and easy to work with.",
-            fabric2_name:  "Texoni",
-            fabric2_desc:  "Texoni fabric for shoe construction. Soft texture, commonly used for upper panels and linings.",
-            fabric3_name:  "Lexine",
-            fabric3_desc:  "Premium Lexine fabric. High-quality material used for the outer upper of formal and elegant shoes.",
-            fabric4_name:  "Contrefort",
-            fabric4_desc:  "Contrefort stiffener material used to reinforce the heel area of shoes. Keeps the shoe shape firm.",
-            glue1_name:    "Colle — Quick Stick Contact Adhesive",
-            glue1_desc:    "Professional contact adhesive for full shoe construction. Strong, flexible bond on rubber, leather, and fabric.",
-            glue2_name:    "Super Glue",
-            glue2_desc:    "Fast-bonding super glue for quick repairs. Strong hold on rubber, leather, and fabric surfaces.",
-            per_pair:      "pair",
-            per_metre:     "metre",
-            per_litre:     "litre",
-            per_piece:     "piece",
-            qty_label:     "Qty:",
-            order_btn:     "Place Order on WhatsApp",
+            tag_soles:     "Soles",   tag_talons:  "Talons",
+            tag_fabric:    "Fabric",  tag_glues:   "Glues",
+            sole1_name:  "Godasi (Volte and Rovas)",
+            sole1_desc:  "Durable rubber sole, Volte and Rovas quality. Strong grip for everyday and formal footwear.",
+            sole2_name:  "Congo Wearable",
+            sole2_desc:  "Flexible and lightweight Congo sole. Comfortable for everyday casual footwear.",
+            sole3_name:  "Congo Original",
+            sole3_desc:  "Original Congo rubber sole. Reliable quality for professional shoe construction.",
+            sole4_name:  "Safesole",
+            sole4_desc:  "Safesole rubber sole. Designed for safety and grip, suitable for work and outdoor shoes.",
+            sole5_name:  "Cyuma mbere",
+            sole5_desc:  "Premium Cyuma mbere rubber sole. Top-of-the-range quality for high-end shoe construction.",
+            talon1_name: "Talon Original (China)",
+            talon1_desc: "Original talon imported from China. Firm and durable, ideal for formal and dress shoes.",
+            talon2_name: "Talon Pilate (Kenya)",
+            talon2_desc: "Flat talon imported from Kenya. Lightweight and flexible, suitable for casual and flat shoes.",
+            talon3_name: "Cedari Original",
+            talon3_desc: "Original Cedari talon. Strong and long-lasting, trusted by professional shoemakers.",
+            fabric1_name: "Tapis Caouch",
+            fabric1_desc: "Rubber-based fabric for shoe linings and inner panels. Durable and easy to work with.",
+            fabric2_name: "Texoni",
+            fabric2_desc: "Texoni fabric for shoe construction. Soft texture for upper panels and linings.",
+            fabric3_name: "Lexine",
+            fabric3_desc: "Premium Lexine fabric. High-quality material for the outer upper of formal and elegant shoes.",
+            fabric4_name: "Contrefort",
+            fabric4_desc: "Stiffener material to reinforce the heel area. Keeps the shoe shape firm.",
+            glue1_name:  "Colle — Quick Stick",
+            glue1_desc:  "Professional contact adhesive for full shoe construction. Strong, flexible bond on rubber, leather, and fabric.",
+            glue2_name:  "Super Glue",
+            glue2_desc:  "Fast-bonding super glue for quick repairs. Strong hold on rubber, leather, and fabric surfaces.",
+            per_pair:    "pair",   per_metre: "metre",
+            per_litre:   "litre",  per_piece: "piece",
+            qty_label:   "Qty:",   order_btn: "Place Order on WhatsApp",
         },
-
         rw: {
+            nav_home:      "Ahabanza",
             nav_products:  "Ibicuruzwa",
-            nav_how:       "Uburyo bikora",
             nav_contact:   "Twandikire",
             page_title:    "Ibicuruzwa Byacu",
             page_sub:      "Hitamo igicuruzwa, ugene ingano, usabe kuri WhatsApp.",
-            tab_soles:     "Imipira",
-            tab_talons:    "Talons",
-            tab_fabric:    "Tapis",
-            tab_glues:     "Simenti",
+            tab_soles:     "Imipira",  tab_talons: "Taro",
+            tab_fabric:    "Tapi",    tab_glues:  "Kore",
             soles_title:   "Imipira y'Inkweto",
-            soles_sub:     "Ubwoko 5 — biragurwa ku paire",
-            talons_title:  "Talons",
-            talons_sub:    "Ubwoko 3 — biragurwa ku paire",
-            fabric_title:  "Tapis ya Caoutchouc",
+            soles_sub:     "Ubwoko 5 — biragurwa kumuguru",
+            talons_title:  "Taro",
+            talons_sub:    "Ubwoko 3 — biragurwa kumuguru",
+            fabric_title:  "Tapi ya kawucu",
             fabric_sub:    "Ubwoko 4 — biragurwa ku metero",
-            glues_title:   "Simenti",
+            glues_title:   "Kore",
             glues_sub:     "Ubwoko 2 buraboneka",
-            tag_soles:     "Imipira",
-            tag_talons:    "Talons",
-            tag_fabric:    "Tapis",
-            tag_glues:     "Simenti",
-            sole1_name:    "Godasi (Volte na Rovas)",
-            sole1_desc:    "Imipira ikomeye, ubwiza bwa Volte na Rovas. Gufata neza mu nkweto zo buri munsi.",
-            sole2_name:    "Congo za Wearable",
-            sole2_desc:    "Imipira yoroheje ya Congo. Iryoshye mu nkweto zo buri munsi.",
-            sole3_name:    "Congo za Original",
-            sole3_desc:    "Imipira ya Congo yihariye. Ubwiza buizewe mu gukora inkweto.",
-            sole4_name:    "Umupira wa Safesole",
-            sole4_desc:    "Umupira wa Safesole. Gufata neza, ukurikizwa mu nkweto z'akazi.",
-            sole5_name:    "Umupira wa Cyuma mbere",
-            sole5_desc:    "Umupira wa Cyuma mbere w'ubwiza bwo hejuru. Ukurikizwa mu nkweto nziza cyane.",
-            talon1_name:   "Talon Original (Ubushinwa)",
-            talon1_desc:   "Talon yihariye ivuye Ubushinwa. Ikomeye kandi iramara igihe kirekire.",
-            talon2_name:   "Talon Pilate (Kenya)",
-            talon2_desc:   "Talon yinini ivuye Kenya. Yoroheje, ikurikizwa mu nkweto zitambitse.",
-            talon3_name:   "Cedari Original",
-            talon3_desc:   "Talon ya Cedari yihariye. Ikomeye kandi iramara, ikoreshwa n'inzobere.",
-            fabric1_name:  "Tapis Caouch",
-            fabric1_desc:  "Igitambara cy'imipira gikurikizwa imbere y'inkweto. Gikomye kandi gikora neza.",
-            fabric2_name:  "Texoni",
-            fabric2_desc:  "Igitambara cya Texoni gikurikizwa mu gukora inkweto. Cyoroheje kandi kikoreshwa hanze.",
-            fabric3_name:  "Lexine",
-            fabric3_desc:  "Igitambara cya Lexine cy'ubwiza bwo hejuru. Gikurikizwa hanze y'inkweto nziza.",
-            fabric4_name:  "Contrefort",
-            fabric4_desc:  "Igitambara cya Contrefort gikurikizwa gukomeza igice cy'inyuma y'inkweto.",
-            glue1_name:    "Colle — Quick Stick Contact Adhesive",
-            glue1_desc:    "Simenti ya lisansi yo gukora inkweto zose. Inanira kandi ikomera neza.",
-            glue2_name:    "Super Glue",
-            glue2_desc:    "Simenti ikomeye vuba, ikurikizwa mu gutuza inkweto no gukora akazi gato.",
-            per_pair:      "paire",
-            per_metre:     "metero",
-            per_litre:     "litiro",
-            per_piece:     "igice",
-            qty_label:     "Ingano:",
-            order_btn:     "Saba kuri WhatsApp",
+            tag_soles:     "Imipira",  tag_talons:  "Taro",
+            tag_fabric:    "Tapi",    tag_glues:   "Kore",
+            sole1_name:  "Godasi (Volte na Rovas)",
+            sole1_desc:  "Imipira ikomeye, ubwiza bwa Volte na Rovas. Gufata neza mu nkweto zo buri munsi.",
+            sole2_name:  "Congo za Wearable",
+            sole2_desc:  "Imipira yoroheje ya Congo. Iryoshye mu nkweto zo buri munsi.",
+            sole3_name:  "Congo za Original",
+            sole3_desc:  "Imipira ya Congo yihariye. Ubwiza buizewe mu gukora inkweto.",
+            sole4_name:  "Safesole",
+            sole4_desc:  "Umupira wa Safesole. Gufata neza, ukurikizwa mu nkweto z'akazi.",
+            sole5_name:  "Cyuma mbere",
+            sole5_desc:  "Umupira wa Cyuma mbere w'ubwiza bwo hejuru. Ukurikizwa mu nkweto nziza cyane.",
+            talon1_name: "Taro Original (Ubushinwa)",
+            talon1_desc: "Taro yihariye ivuye Ubushinwa. Ikomeye kandi iramara igihe kirekire.",
+            talon2_name: "Taro Pilate (Kenya)",
+            talon2_desc: "Taro yinini ivuye Kenya. Yoroheje, ikurikizwa mu nkweto zitambitse.",
+            talon3_name: "Cedari Originare",
+            talon3_desc: "Taro ya Cedari yihariye. Ikomeye kandi iramara, ikoreshwa n'inzobere.",
+            fabric1_name: "Tapi kawucu",
+            fabric1_desc: "Igitambara cy'imipira gikurikizwa imbere y'inkweto. Gikomye kandi gikora neza.",
+            fabric2_name: "Texoni",
+            fabric2_desc: "Igitambara cya Texoni. Cyoroheje kandi kikoreshwa hanze y'inkweto.",
+            fabric3_name: "Lexine",
+            fabric3_desc: "Igitambara cya Lexine cy'ubwiza bwo hejuru. Gikurikizwa hanze y'inkweto nziza.",
+            fabric4_name: "Contrefort",
+            fabric4_desc: "Igitambara cya Contrefort gikurikizwa gukomeza igice cy'inyuma y'inkweto.",
+            glue1_name:  "Colle — Quick Stick",
+            glue1_desc:  "Simenti ya lisansi yo gukora inkweto zose. Inanira kandi ikomera neza.",
+            glue2_name:  "Super Glue",
+            glue2_desc:  "Simenti ikomeye vuba, ikurikizwa mu gutuza inkweto no gukora akazi gato.",
+            per_pair:    "paire",   per_metre: "metero",
+            per_litre:   "litiro",  per_piece: "igice",
+            qty_label:   "Ingano:", order_btn: "Saba kuri WhatsApp",
         },
-
         fr: {
+            nav_home:      "Accueil",
             nav_products:  "Produits",
-            nav_how:       "Comment ça marche",
             nav_contact:   "Nous contacter",
             page_title:    "Nos Produits",
             page_sub:      "Choisissez un produit, sélectionnez la quantité et passez commande sur WhatsApp.",
-            tab_soles:     "Semelles",
-            tab_talons:    "Talons",
-            tab_fabric:    "Tissus",
-            tab_glues:     "Colles",
+            tab_soles:     "Semelles",  tab_talons: "Talons",
+            tab_fabric:    "Tissus",    tab_glues:  "Colles",
             soles_title:   "Semelles en caoutchouc",
             soles_sub:     "5 types disponibles — vendues à la paire",
             talons_title:  "Talons",
@@ -984,66 +922,72 @@
             fabric_sub:    "4 types disponibles — vendus au mètre",
             glues_title:   "Colles",
             glues_sub:     "2 types disponibles",
-            tag_soles:     "Semelles",
-            tag_talons:    "Talons",
-            tag_fabric:    "Tissus",
-            tag_glues:     "Colles",
-            sole1_name:    "Godasi (Volte na Rovas)",
-            sole1_desc:    "Semelle caoutchouc durable, qualité Volte et Rovas. Bonne adhérence pour chaussures formelles et quotidiennes.",
-            sole2_name:    "Congo za Wearable",
-            sole2_desc:    "Semelle Congo légère et flexible. Confortable pour les chaussures décontractées.",
-            sole3_name:    "Congo za Original",
-            sole3_desc:    "Semelle Congo originale. Qualité fiable pour la fabrication professionnelle de chaussures.",
-            sole4_name:    "Umupira wa Safesole",
-            sole4_desc:    "Semelle Safesole. Conçue pour la sécurité et l'adhérence, idéale pour les chaussures de travail.",
-            sole5_name:    "Umupira wa Cyuma mbere",
-            sole5_desc:    "Semelle Cyuma mbere haut de gamme. Qualité supérieure pour la fabrication de chaussures élégantes.",
-            talon1_name:   "Talon Original (Chine)",
-            talon1_desc:   "Talon original importé de Chine. Ferme et durable, idéal pour les chaussures formelles.",
-            talon2_name:   "Talon Pilate (Kenya)",
-            talon2_desc:   "Talon plat importé du Kenya. Léger et flexible, pour chaussures plates et décontractées.",
-            talon3_name:   "Cedari Original",
-            talon3_desc:   "Talon Cedari original. Solide et longue durée, utilisé par les cordonniers professionnels.",
-            fabric1_name:  "Tapis Caouch",
-            fabric1_desc:  "Tissu à base de caoutchouc pour doublures et panneaux intérieurs de chaussures.",
-            fabric2_name:  "Texoni",
-            fabric2_desc:  "Tissu Texoni pour la fabrication de chaussures. Texture douce pour panneaux et doublures.",
-            fabric3_name:  "Lexine",
-            fabric3_desc:  "Tissu Lexine de haute qualité. Utilisé pour le dessus extérieur des chaussures élégantes.",
-            fabric4_name:  "Contrefort",
-            fabric4_desc:  "Matériau rigide Contrefort pour renforcer la zone du talon. Maintient la forme de la chaussure.",
-            glue1_name:    "Colle — Quick Stick Contact Adhesive",
-            glue1_desc:    "Colle de contact professionnelle pour fabrication complète. Liaison solide et flexible.",
-            glue2_name:    "Super Glue",
-            glue2_desc:    "Super colle à prise rapide pour réparations. Adhérence forte sur caoutchouc, cuir et tissu.",
-            per_pair:      "paire",
-            per_metre:     "mètre",
-            per_litre:     "litre",
-            per_piece:     "pièce",
-            qty_label:     "Qté :",
-            order_btn:     "Commander sur WhatsApp",
+            tag_soles:     "Semelles",  tag_talons:  "Talons",
+            tag_fabric:    "Tissus",    tag_glues:   "Colles",
+            sole1_name:  "Godasi (Volte na Rovas)",
+            sole1_desc:  "Semelle caoutchouc durable. Bonne adhérence pour chaussures formelles et quotidiennes.",
+            sole2_name:  "Congo za Wearable",
+            sole2_desc:  "Semelle Congo légère et flexible. Confortable pour les chaussures décontractées.",
+            sole3_name:  "Congo za Original",
+            sole3_desc:  "Semelle Congo originale. Qualité fiable pour la fabrication professionnelle.",
+            sole4_name:  "Safesole",
+            sole4_desc:  "Semelle Safesole. Conçue pour la sécurité et l'adhérence, idéale pour les chaussures de travail.",
+            sole5_name:  "Cyuma mbere",
+            sole5_desc:  "Semelle Cyuma mbere haut de gamme. Qualité supérieure pour chaussures élégantes.",
+            talon1_name: "Talon Original (Chine)",
+            talon1_desc: "Talon original importé de Chine. Ferme et durable, idéal pour chaussures formelles.",
+            talon2_name: "Talon Pilate (Kenya)",
+            talon2_desc: "Talon plat importé du Kenya. Léger et flexible, pour chaussures plates.",
+            talon3_name: "Cedari Original",
+            talon3_desc: "Talon Cedari original. Solide et longue durée, utilisé par les cordonniers professionnels.",
+            fabric1_name: "Tapis Caouch",
+            fabric1_desc: "Tissu caoutchouc pour doublures et panneaux intérieurs. Durable et facile à utiliser.",
+            fabric2_name: "Texoni",
+            fabric2_desc: "Tissu Texoni pour chaussures. Texture douce pour panneaux et doublures.",
+            fabric3_name: "Lexine",
+            fabric3_desc: "Tissu Lexine de haute qualité pour le dessus extérieur des chaussures élégantes.",
+            fabric4_name: "Contrefort",
+            fabric4_desc: "Matériau rigide pour renforcer la zone du talon. Maintient la forme de la chaussure.",
+            glue1_name:  "Colle — Quick Stick",
+            glue1_desc:  "Colle de contact professionnelle pour fabrication complète. Liaison solide et flexible.",
+            glue2_name:  "Super Glue",
+            glue2_desc:  "Super colle à prise rapide pour réparations. Adhérence forte sur toutes surfaces.",
+            per_pair:    "paire",   per_metre: "mètre",
+            per_litre:   "litre",   per_piece: "pièce",
+            qty_label:   "Qté :",  order_btn: "Commander sur WhatsApp",
         }
-
     };
 
-    /* ── Language switcher ── */
-    function setLang(lang, clickedBtn) {
-        document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.classList.remove('active');
-        });
-        clickedBtn.classList.add('active');
-        const t = translations[lang];
-        document.querySelectorAll('[data-i18n]').forEach(function(el) {
-            const key = el.getAttribute('data-i18n');
-            if (t[key] !== undefined) {
-                el.innerHTML = t[key];
-            }
-        });
-        document.documentElement.setAttribute('lang', lang);
-    }
+   /* Save language choice and apply it */
+function setLang(lang, clickedBtn) {
+
+    /* Save the chosen language so other pages remember it */
+    localStorage.setItem('inkweto-lang', lang);
+
+    /* Highlight the clicked button */
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    if (clickedBtn) { clickedBtn.classList.add('active'); }
+
+    /* Swap all text using data-i18n keys */
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) { el.innerHTML = t[key]; }
+    });
+
+    document.documentElement.setAttribute('lang', lang);
+}
+
+/* When the page loads, apply the saved language automatically */
+(function () {
+    const saved = localStorage.getItem('inkweto-lang') || 'en';
+    const activeBtn = document.querySelector('.lang-btn[onclick*="' + saved + '"]');
+    setLang(saved, activeBtn);
+})();
 
 </script>
-
 
 </body>
 </html>

@@ -401,9 +401,10 @@
             <a href="index.html" class="nav-logo">Inkweto<span> Nziza</span></a>
 
             <ul class="nav-links" id="navLinks">
-                <li><a href="products.html"     data-i18n="nav_products">Products</a></li>
-                <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">Contact Us</a></li>
-            </ul>
+    <li><a href="index.html"    data-i18n="nav_home">Home</a></li>
+    <li><a href="products.html" data-i18n="nav_products">Products</a></li>
+    <li><a href="contact.html" class="nav-cta" data-i18n="nav_contact">Contact Us</a></li>
+</ul>
 
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="setLang('en', this)">EN</button>
@@ -542,20 +543,10 @@
                     </div>
 
                     <!-- Product they bought -->
-                    <div class="form-group">
-                        <label for="product" data-i18n="label_product">Which product did you buy?</label>
-                        <select id="product" name="product">
-                            <option value="" data-i18n="product_default">Select a product...</option>
-                            <option value="Rubber Sole Type 1" data-i18n="product_s1">Rubber Sole — Type 1</option>
-                            <option value="Rubber Sole Type 2" data-i18n="product_s2">Rubber Sole — Type 2</option>
-                            <option value="Rubber Sole Type 3" data-i18n="product_s3">Rubber Sole — Type 3</option>
-                            <option value="Super Glue"         data-i18n="product_g1">Super Glue</option>
-                            <option value="Shoe Glue"          data-i18n="product_g2">Shoe Glue</option>
-                            <option value="Microfiber Fabric Brown"  data-i18n="product_f1">Microfiber Fabric — Brown</option>
-                            <option value="Microfiber Fabric Type 2" data-i18n="product_f2">Microfiber Fabric — Type 2</option>
-                            <option value="Microfiber Fabric Type 3" data-i18n="product_f3">Microfiber Fabric — Type 3</option>
-                        </select>
-                    </div>
+ <div class="form-group">
+    <label for="product" data-i18n="label_product">Which product did you buy?</label>
+    <input type="text" id="product" name="product" placeholder="e.g. Godasi, Super Glue, Texoni...">
+</div>
 
                     <!-- Message -->
                     <div class="form-group">
@@ -645,6 +636,7 @@
     const translations = {
 
         en: {
+            nav_home:     "Home",
             nav_products:   "Products",
             nav_how:        "How it works",
             nav_contact:    "Contact Us",
@@ -664,21 +656,13 @@
             label_rating:   "Rating",
             label_product:  "Which product did you buy?",
             label_message:  "Your feedback",
-            product_default:"Select a product...",
-            product_s1:     "Rubber Sole — Type 1",
-            product_s2:     "Rubber Sole — Type 2",
-            product_s3:     "Rubber Sole — Type 3",
-            product_g1:     "Super Glue",
-            product_g2:     "Shoe Glue",
-            product_f1:     "Microfiber Fabric — Brown",
-            product_f2:     "Microfiber Fabric — Type 2",
-            product_f3:     "Microfiber Fabric — Type 3",
             submit_btn:     "Send Feedback",
             success_title:  "Thank you!",
             success_msg:    "Your feedback has been sent. We really appreciate it.",
         },
 
         rw: {
+            nav_home:     "Ahabanza", 
             nav_products:   "Ibicuruzwa",
             nav_how:        "Uburyo bikora",
             nav_contact:    "Twandikire",
@@ -694,25 +678,17 @@
             form_title:     "Siga Igitekerezo",
             form_intro:     "Ibitekerezo byawe biratunzwe. Tubiganire ku birebana n'Inkweto Nziza.",
             label_name:     "Izina ryawe",
-            label_email:    "Imeli yawe",
-            label_rating:   "Ikipimo",
-            label_product:  "Ni igicuruzwa ikihe waguriye?",
+            label_email:    "Imeri yawe",
+            label_rating:   "Igipimo",
+            label_product:  "Ni ikihe gicuruzwa waguze?",
             label_message:  "Ibitekerezo byawe",
-            product_default:"Hitamo igicuruzwa...",
-            product_s1:     "Icyondo — Ubwoko 1",
-            product_s2:     "Icyondo — Ubwoko 2",
-            product_s3:     "Icyondo — Ubwoko 3",
-            product_g1:     "Super Glue",
-            product_g2:     "Simenti y'Inkweto",
-            product_f1:     "Igitambara — Icyatsi kibisi",
-            product_f2:     "Igitambara — Ubwoko 2",
-            product_f3:     "Igitambara — Ubwoko 3",
             submit_btn:     "Ohereza Igitekerezo",
             success_title:  "Urakoze!",
             success_msg:    "Igitekerezo cyawe cyoherejwe. Turakukoze cyane.",
         },
 
         fr: {
+            nav_home:     "Accueil",
             nav_products:   "Produits",
             nav_how:        "Comment ça marche",
             nav_contact:    "Nous contacter",
@@ -732,15 +708,6 @@
             label_rating:   "Note",
             label_product:  "Quel produit avez-vous acheté ?",
             label_message:  "Votre avis",
-            product_default:"Sélectionnez un produit...",
-            product_s1:     "Semelle caoutchouc — Type 1",
-            product_s2:     "Semelle caoutchouc — Type 2",
-            product_s3:     "Semelle caoutchouc — Type 3",
-            product_g1:     "Super Glue",
-            product_g2:     "Colle à chaussures",
-            product_f1:     "Tissu microfibre — Marron",
-            product_f2:     "Tissu microfibre — Type 2",
-            product_f3:     "Tissu microfibre — Type 3",
             submit_btn:     "Envoyer l'avis",
             success_title:  "Merci !",
             success_msg:    "Votre avis a été envoyé. Nous vous en remercions sincèrement.",
@@ -749,22 +716,34 @@
     };
 
     /* ── Language switcher ── */
-    function setLang(lang, clickedBtn) {
-        document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.classList.remove('active');
-        });
-        clickedBtn.classList.add('active');
+  /* Save language choice and apply it */
+function setLang(lang, clickedBtn) {
 
-        const t = translations[lang];
-        document.querySelectorAll('[data-i18n]').forEach(function(el) {
-            const key = el.getAttribute('data-i18n');
-            if (t[key] !== undefined) {
-                el.innerHTML = t[key];
-            }
-        });
+    /* Save the chosen language so other pages remember it */
+    localStorage.setItem('inkweto-lang', lang);
 
-        document.documentElement.setAttribute('lang', lang);
-    }
+    /* Highlight the clicked button */
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    if (clickedBtn) { clickedBtn.classList.add('active'); }
+
+    /* Swap all text using data-i18n keys */
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) { el.innerHTML = t[key]; }
+    });
+
+    document.documentElement.setAttribute('lang', lang);
+}
+
+/* When the page loads, apply the saved language automatically */
+(function () {
+    const saved = localStorage.getItem('inkweto-lang') || 'en';
+    const activeBtn = document.querySelector('.lang-btn[onclick*="' + saved + '"]');
+    setLang(saved, activeBtn);
+})();
 
 </script>
 
