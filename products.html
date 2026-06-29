@@ -787,19 +787,45 @@
     /* ── WhatsApp order ──
        TO SWITCH TO MOM'S NUMBER: change 250784626577 → 250788431726
     */
-    function orderOnWhatsApp(btn, productName, pricePerUnit, unit) {
-        const card  = btn.closest('.product-card');
-        const input = card.querySelector('.qty-input');
-        const qty   = parseInt(input.value) || 1;
-        const total = (qty * pricePerUnit).toLocaleString();
-        const message =
+   function orderOnWhatsApp(btn, productName, pricePerUnit, unit) {
+    const card  = btn.closest('.product-card');
+    const input = card.querySelector('.qty-input');
+    const qty   = parseInt(input.value) || 1;
+    const total = (qty * pricePerUnit).toLocaleString();
+
+    /* Read whichever language is currently active */
+    const lang = localStorage.getItem('inkweto-lang') || 'en';
+
+    /* Message templates for each language */
+    const messages = {
+        en:
             'Hello Inkweto Nziza! I would like to place an order:%0A%0A' +
             'Product: ' + productName + '%0A' +
             'Quantity: ' + qty + ' ' + unit + (qty > 1 ? 's' : '') + '%0A' +
             'Total: ' + total + ' RWF%0A%0A' +
-            'Please confirm availability. Thank you!';
-        window.open('https://wa.me/250784626577?text=' + message, '_blank');
-    }
+            'Please confirm availability. Thank you!',
+
+        rw:
+            'Muraho Inkweto Nziza! Ndashaka gutumiza:%0A%0A' +
+            'Igicuruzwa: ' + productName + '%0A' +
+            'Ingano: ' + qty + ' ' + unit + '%0A' +
+            'Igiteranyo: ' + total + ' RWF%0A%0A' +
+            'Mwakwemeza ko kiboneka. Murakoze!',
+
+        fr:
+            'Bonjour Inkweto Nziza! Je souhaite passer une commande:%0A%0A' +
+            'Produit: ' + productName + '%0A' +
+            'Quantité: ' + qty + ' ' + unit + '%0A' +
+            'Total: ' + total + ' RWF%0A%0A' +
+            'Veuillez confirmer la disponibilité. Merci!',
+    };
+
+    /* Use the message matching the current language, fall back to English */
+    const message = messages[lang] || messages.en;
+
+    /* TEST NUMBER — swap to 250788431726 when ready for mom */
+    window.open('https://wa.me/250784626577?text=' + message, '_blank');
+}
 
 
     /* ── Translations ── */
@@ -885,7 +911,7 @@
             sole5_name:  "Cyuma mbere",
             sole5_desc:  "Umupira wa Cyuma mbere w'ubwiza bwo hejuru. Ukurikizwa mu nkweto nziza cyane.",
             talon1_name: "Taro Original (Ubushinwa)",
-            talon1_desc: "Taro yihariye ivuye Ubushinwa. Ikomeye kandi iramara igihe kirekire.",
+            talon1_desc: "Taro yihariye ivuye mubushinwa. Ikomeye kandi izamara igihe kirekire.",
             talon2_name: "Taro Pilate (Kenya)",
             talon2_desc: "Taro yinini ivuye Kenya. Yoroheje, ikurikizwa mu nkweto zitambitse.",
             talon3_name: "Cedari Originare",
